@@ -7,6 +7,11 @@ width: 100%;
 height: auto;
 }
 
+.col-md-3 img{
+width: 227px;
+max-height: 242px;
+}
+
 
 
 body .no-padding {
@@ -58,7 +63,7 @@ botton:auto;
     <div class="container" style="border:4px dotted aqua;">
       <!--        slideshow starts here-->
       <div class="carousel-inner">
-        <h2 class="h2">{{product.0.category}}</h2>
+        <h2 class="h2 my-4">{{product.0.category}}</h2>
         <div class="carousel-item active">
           <div class="row">
             <div class="col-xs-3 col-sm-3 col-md-3">
@@ -67,7 +72,7 @@ botton:auto;
                 <div class="card-body">
                   <h5 class="card-title">{{product.0.product_name}}</h5>
                   <p class="card-text">{{product.0.desc}}</p>
-                  <a href="#" class="btn btn-primary">Add to cart</a>
+                  <button id="pr{{product.0.product_id}}" href="#" class="cart btn btn-primary">Add to cart</button>
                 </div>
               </div>
             </div>
@@ -79,7 +84,7 @@ botton:auto;
                 <div class="card-body">
                   <h5 class="card-title">{{i.product_name}}</h5>
                   <p class="card-text">{{i.product_name}}</p>
-                  <a href="#" class="btn btn-primary">Add to cart</a>
+                  <button href="#" id="pr{{i.product_id}}" class="cart btn btn-primary">Add to cart</button>
                 </div>
               </div>
             </div>
@@ -115,3 +120,32 @@ botton:auto;
 
 
 {% endblock %}
+
+{% block js %}
+<script>
+  console.log('hello from console');
+  if (localStorage.getItem('cart') == null) {
+    var cart = {};
+  } else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+  }
+
+  $('.cart').click(function (e) {
+    e.preventDefault();
+    var idstr = this.id.toString();
+    console.log(idstr);
+    console.log("clicked");
+
+    if(cart[idstr] != undefined){
+      cart[idstr] += 1;
+    }
+    else{
+      cart[idstr] = 1;
+    }
+    console.log(cart);
+    localStorage.setItem('cart',JSON.stringify(cart));
+
+  });
+</script>
+
+{% endblock js %}

@@ -16,7 +16,7 @@ def index(request):
     catProds = Product.objects.values('category','product_id')
     print(catProds)
     cats = {item['category'] for item in catProds}
-    print(cats)
+    print("Printing cats",cats)
     for cat in cats:
         prod = Product.objects.filter(category = cat)
         n = len(prod)
