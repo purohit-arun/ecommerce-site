@@ -105,111 +105,85 @@ padding-right: 0;
 {% block js %}
 
 <script>
-  //find out the cart items from localstorage
-  if (localStorage.getItem('cart') == null) {
+// Find out the cart items from localStorage
+if (localStorage.getItem('cart') == null) {
     var cart = {};
-  } else {
+} else {
     cart = JSON.parse(localStorage.getItem('cart'));
-    {% comment %} document.getElementById('cart').innerHTML = Object.keys(cart).length; {% endcomment %}
-    updateCart(cart);
-  }
-  //if add to cart button is clicked then increment the cart values
-  $('.cart').click(function () {
-    var idstr = this.id.toString();
-    console.log(idstr);
-    if (cart[idstr] != undefined) {
-      cart[idstr] = cart[idstr] + 1;
-    } else {
-      cart[idstr] = 1;
-    }
-    updateCart(cart);
-    //console.log(cart);
-    localStorage.setItem('cart', JSON.stringify(cart));
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
-  });
+    updateCart(cart);
+}
+// If the add to cart button is clicked, add/increment the item
+  $('.divpr').on('click','button.cart',function(){
+    var idstr = this.id.toString();
+    if (cart[idstr] != undefined) {
+        cart[idstr] = cart[idstr] + 1;
+    } else {
+        cart[idstr] = 1;
+    }
+    updateCart(cart);
+    
+});
 
-  //function for updating popover 
-  
-
-  function updateCart(cart) {
-    var sum =0;
+//function to clear cart 
+function clearCart() {
+    cart = JSON.parse(localStorage.getItem('cart'));
     for (var item in cart) {
-      sum = sum + cart[item];
-      document.getElementById('div' + item).innerHTML = "<button id='minus" + item +
-        "' class='btn btn-primary minus'> - </button> <span id='val" + item + "'>" + cart[item] +
-        "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
-        //document.getElementById('cart').innerHTML = Object.keys(cart).length;
+        document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-primary cart">Add To Cart</button>'
+    }
+    localStorage.clear();
+    cart = {};
+    updateCart(cart);
+}
+
+//Add Popover to cart
+$('#popcart').popover();
+updatePopover(cart);
+function updatePopover(cart)
+{
+    console.log('We are inside updatePopover');
+    var popStr = "";
+    popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
+    var i = 1;
+    for (var item in cart){
+        popStr = popStr + "<b>" + i + "</b>. ";
+        popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] + '<br>';
+        i = i+1;
+    }
+    popStr = popStr + "</div>" 
+    popStr = popStr + "<div><a href='/shop/checkout'><button id='checkoutbtn' class='btn btn-primary'>Checkout </button></a> <button id='clearcartbtn' onclick='clearCart()' class='btn btn-danger'>Clear </button></div>";
+    console.log(popStr);
+    document.getElementById('popcart').setAttribute('data-content', popStr);
+    $('#popcart').popover('show');
+}
+
+
+//update cart function
+function updateCart(cart) {
+    var sum = 0;
+    for (var item in cart) {
+        sum = sum + cart[item];
+        document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
     }
     localStorage.setItem('cart', JSON.stringify(cart));
-    //document.getElementById('cart').innerHTML = Object.keys(cart).length;
     document.getElementById('cart').innerHTML = sum;
     console.log(cart);
     updatePopover(cart);
-  }
-
-  //adding popover to cart
-  $('#popcart').popover();
-  function updatePopover(cart)
-  {
-    console.log("Inside popover");
-    var popStr = "";
-    var popStr = popStr + "<h5>cart</h5>"
-    var i = 1;
-    for(var item in cart){
-      popStr = popStr + "<b>" + i +" - "+ "</b>";
-      popStr = popStr + document.getElementById("name"+item).innerHTML.slice(0, 19) + " <b>Qty : </b>" + cart[item]  + "<br>";
-      i = i+1;
-    }
-    // console.log(popStr);
-    document.getElementById('popcart').setAttribute('data-content', popStr);
-    $('#popcart').popover('show');
-  }
-  updatePopover(cart);
-  // document.getElementById('popcart').setAttribute('data-content', '<h6>cart</h6>');
-
-  //if plus and minus value is clicked then change cart value
-
-  // $('divpr').on("click", "button.minus" ,function () { 
-  //   console.log("minus cliked");
-  // });
-
-//   $('.divpr').click(function(){ 
-//       $(this).find('.minus').click(function(){
-//         console.log("- minus clicked");
-//       });
-// });
-
-//   $('.divpr').click(function(){ 
-//       $(this).find('.plus').click(function(){
-//         console.log("+ plus clicked");
-//       });
-// });
-
-//   $(".divpr").click(function(){
-//   alert("The paragraph was clicked.");
-// });
-
-$('.divpr').on("click", "button.minus", function(){
-  // console.log("- clicked");
-  a = this.id.slice(5);
-  cart[a] = cart[a] - 1;
-  cart[a] = Math.max(0, cart[a]);
-  document.getElementById('val'+a).innerHTML= cart[a];
-  updateCart(cart);
-  console.log(a);
+}
+// If plus or minus button is clicked, change the cart as well as the display value
+$('.divpr').on("click", "button.minus", function() {
+    a = this.id.slice(7, );
+    cart['pr' + a] = cart['pr' + a] - 1;
+    cart['pr' + a] = Math.max(0, cart['pr' + a]);
+    document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
+    updateCart(cart);
 });
-  
-$('.divpr').on("click", "button.plus", function(){
-  // console.log("+ clicked");
-  a = this.id.slice(4);
-  // console.log(a);
-  cart[a] = cart[a] + 1;
-  console.log(cart[a]);
-  document.getElementById('val'+a).innerHTML= cart[a];
-  updateCart(cart);
-  console.log(a);
+$('.divpr').on("click", "button.plus", function() {
+    a = this.id.slice(6, );
+    cart['pr' + a] = cart['pr' + a] + 1;
+    document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
+    updateCart(cart);
 });
-  
-
 </script>
+
 {% endblock js %}
