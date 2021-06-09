@@ -10,7 +10,7 @@ for opening the python shell for database query (django ORM feature)
 step 1: open cmd typed python manage.py shell
 step 2: import models that you want to query upon 
 i.e from shop.modesl import Product or to import all models of
-any app type import shop.models import *
+any app type from shop.models import *
 
 if your want something like this "select * from product where category='Electronics' " than write the following command in shell 
 Product.objects.filter(category = "Electronics")
