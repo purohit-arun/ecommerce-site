@@ -101,16 +101,11 @@
 
     $('#itemJson').val(JSON.stringify(cart));
         
-        {% if thank %}
-            console.log('chal be chal');
-            alert("Thank for shopping with us, and your order id is "{{id}});
-            localStorage.clear();
-        {% endif %}
-   
-
-    {% comment %} $( "#placeorder" ).click(function() {
-         
-    }); {% endcomment %}
+    {% if thank == True %}
+        alert("Thank for shopping with us, and your order id is {{id}} Use it to track your order. ");
+        localStorage.clear();
+        document.location  = "/shop"; 
+    {% endif %}
 </script>
 
 

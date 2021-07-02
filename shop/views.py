@@ -1,9 +1,9 @@
 from typing import OrderedDict
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.http import HttpResponse, response
+import json
 from django.db import models
-from .models import Orders, Product, Contact
+from .models import Orders, Product, Contact, OrdersUpdate
 from math import ceil
 
 # Create your views here.
@@ -58,6 +58,23 @@ def contact(request):
 
 
 def tracker(request):
+    if request.method == "POST":
+        orderID = request.POST.get('orderId')
+        email = request.POST.get('email')
+        try:
+            order = Orders.objects.filter(order_id = orderID, email = email)
+            print("This is order id for tracking",order,"email",email)
+            if len(order) > 0:
+                update = OrdersUpdate.objects.filter(order_id = orderID)
+                updates = []
+                for item in update:
+                    updates.append({'text' : item.update_desc, 'time':item.timestamp})
+                    response = json.dumps(updates, default=str)
+                return HttpResponse(response)
+            else:
+                return HttpResponse('{}') 
+        except Exception as e:
+            return HttpResponse('{}')
     return render(request, 'shop/tracker.html')
 
 
@@ -73,6 +90,7 @@ def productView(request, id):
 
 def checkOut(request):
     if request.method == "POST":
+        items_json = request.POST.get('itemJson')
         name = request.POST.get('inputname')
         email = request.POST.get('inputEmail4')
         address = request.POST.get('inputAddress')
@@ -80,10 +98,13 @@ def checkOut(request):
         state = request.POST.get('state')
         zip_code = request.POST.get('inputZip')
         phone = request.POST.get('phone')
-        order = Orders(name=name, email=email, address=address,
+        order = Orders(items_json = items_json, name=name, email=email, address=address,
                        city=city, state=state, zip_code=zip_code, phone=phone)
         order.save()
+        update = OrdersUpdate(order_id = order.order_id, update_desc = "Order Placed Successfully")
+        update.save()
         thank = True
         id = order.order_id
+        print(f"{id} - {thank}")
         return render(request, 'shop/checkout.html', {'thank' : thank, 'id' : id})    
     return render(request, 'shop/checkout.html')
