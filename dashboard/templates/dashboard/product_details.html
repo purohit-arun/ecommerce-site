@@ -1,0 +1,182 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">Product Details</h4>
+				<div class="page-title-right">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#ModalFormAddProduct">Add Product</button>
+            	</div>
+		    </div>
+		</div>
+    </div>
+	<!-- end page title -->
+
+	<!-- start Product View -->
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row mb-2">
+							<div class="col-sm-4">
+								<div class="search-box me-2 mb-2 d-inline-block">
+									<div class="position-relative">
+										<input type="text" class="form-control" placeholder="Search...">
+										<i class="bx bx-search-alt search-icon"></i>
+									</div>
+								</div>
+							</div>
+							<!-- end col-->
+						</div>
+
+						<div class="table-responsive">
+							<table class="table align-middle table-nowrap table-check table-striped">
+								<thead class="table-primary">
+									<tr>
+										<th style="width: 20px;" class="align-middle">
+											<div class="form-check font-size-16">
+												<input class="form-check-input" type="checkbox" id="checkAll">
+												<label class="form-check-label" for="checkAll"></label>
+											</div>
+										</th>
+										<th class="align-middle">Product ID</th>
+										<th class="align-middle">Image</th>
+										<th class="align-middle">Product Name</th>
+										<th class="align-middle">Price</th>
+										<th class="align-middle">Published Date</th>
+										<th class="align-middle">Description</th>
+										<th class="align-middle">Status</th>
+										<th class="align-middle">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% if page_obj %}
+									{% for p in page_obj.object_list%}
+										<tr>
+											<td>
+												<div class="form-check font-size-16">
+													<input class="form-check-input" type="checkbox" id="orderidcheck01">
+													<label class="form-check-label" for="orderidcheck01"></label>
+												</div>
+											</td>
+											<td>{{p.product_id}}</td>
+											<td><img src="/media/{{p.imag|default_if_none:'#'}}" alt="{{p.imag}}" style="height:50px" ></td>
+											<td>{{p.product_name}}</td>
+											<td>{{p.price}}</td>
+											<td>{{p.published_date}}</td>
+											<td>{{p.desc}}</td>
+											<td>
+												<span class="badge badge-pill badge-soft-success font-size-12">True</span>
+											</td>
+											<td>
+												<div class="d-flex gap-3">
+													<a href="{% url 'product-edit' id=p.product_id %}" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+													<a href="{% url 'product-delete' id=p.product_id %}" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+												</div>
+											</td>
+										</tr>
+									{% endfor %}
+									{% else %}
+										<tr>
+                                        	<td colspan="8" style="text-align:center;">No Data Available...</td>
+										</tr>
+									{% endif %}
+								</tbody>
+							</table>
+						</div>
+						
+						<!-- start Pagination-->
+							<ul class="pagination justify-content-end pagination-sm">
+								{% if page_obj.has_previous %}
+									<li class="page-item"><a href="?page=1"  class="page-link">First</a></li>
+									<li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a></li>
+								{% endif %}
+
+								<li class="page-item"><span class="page-link current">
+									Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+								</span></li>
+
+								{% if page_obj.has_next %}
+									<li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a></li>
+									<li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a></li>
+								{% endif %}
+							</ul>
+						<!-- end Pagination-->
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- end Product View -->
+	
+	<!-- Modal Form : Add product -->
+        <div class="modal fade" id="ModalFormAddProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form name="fromaddproduct" action="{% url 'product-add' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                        </div>
+
+                        <div class="modal-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="mb-3">
+										<label for="productname">Product Name</label>
+										<input id="productname" name="product_name" type="text" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="productname">Published Date</label>
+										<input id="publisheddate" name="published_date" type="text" class="form-control" placeholder="DD-MM-YYYY" disabled>
+									</div>
+									<div class="mb-3">
+										<label for="price">Price</label>
+										<input id="price" name="price" type="text" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="price">Product Image</label>
+										<input type="file" id="product_image" name="product_image"  class="form-control">
+									</div>
+									<div class="mb-3">
+										<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
+										<label for="chk_status">Status</label>
+									</div>
+								</div>
+								
+								<div class="col-sm-6">
+									<div class="mb-3">
+										<label class="control-label">Category</label>
+										<select class="form-control select2" name="product_category">
+											<option hidden selected>Select</option>
+											{% for c in cobj %}
+												<option value="{{c.category_name}}">{{c.category_name}}</option>
+											{% endfor %}
+										</select>
+									</div>
+
+									<div class="mb-3">
+										<label class="control-label">Sub Category</label>
+										<select class="form-control select2" name="product_subcategory">
+											<option selected hidden>Select</option>
+											{% for sc in scobj %}
+												<option value="{{sc.sub_category_name}}">{{sc.sub_category_name}}</option>
+											{% endfor %}
+										</select>
+									</div>
+									<div class="mb-3">
+										<label for="productdesc">Product Description</label>
+										<textarea class="form-control" id="product_desc" name="product_desc" rows="5"></textarea>
+									</div>
+								</div>
+							</div>			
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock body %}

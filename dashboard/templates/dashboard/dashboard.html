@@ -72,5 +72,18 @@
 
         <!-- App js -->
         <script src="/static/assets/js/app.js"></script>
+
+        <!-- Sweet Alert -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+        {% for message in messages %}
+            swal({
+                title: "{{ message.tags }}",
+                text: "{{ message }}",
+                icon: "{{ message.tags }}",
+                button: "Ok",
+            });
+       {% endfor %}
+        </script>
     </body>
 </html>

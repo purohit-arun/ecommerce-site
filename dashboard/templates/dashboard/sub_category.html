@@ -1,0 +1,186 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+    <!-- start page title -->
+	{% comment %} <div class="row">
+		<div class="col-12">
+			<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+				<h4 class="mb-sm-0 font-size-18">Add Sub Category</h4>
+			</div>
+		</div>
+	</div> {% endcomment %}
+	<!-- end page title -->
+
+	{% comment %} <div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+
+					<form name="fromaddsubcategory" action="{% url 'sub-category' %}" method="post">
+					{% csrf_token %}
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<label class="control-label">Category</label>
+									<select class="form-control select2" name="category">
+										<option hidden selected>Select</option>
+										{% for c in cobj %}
+											<option value="{{c.category_id}}">{{c.category_name}}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<label for="sub_category_name">Sub Category Name</label>
+									<input id="sub_category_name" name="sub_category_name" type="text" class="form-control">
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
+								<label for="chk_status">Status</label>
+							</div>
+						</div>
+
+						<div class="d-flex flex-wrap gap-2">
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+							<button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+	</div> {% endcomment %}
+	<!-- end row -->
+
+	<!-- start page title -->
+		<div class="row">
+			<div class="col-12">
+				<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+					<h4 class="mb-sm-0 font-size-18">Sub Category Detrails</h4>
+					<div class="page-title-right">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#ModalFormAddSubCategory">Add Sub Category</button>
+                    </div>
+				</div>
+			</div>
+		</div>
+	<!-- end page title -->
+
+	<!-- start Sub-Category Details View -->
+		<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row mb-2">
+								<div class="col-sm-4">
+									<div class="search-box me-2 mb-2 d-inline-block">
+										<div class="position-relative">
+											<input type="text" class="form-control" placeholder="Search...">
+											<i class="bx bx-search-alt search-icon"></i>
+										</div>
+									</div>
+								</div>
+								<!-- end col-->
+							</div>
+
+							<div class="table-responsive">
+								<table class="table align-middle table-nowrap table-check table-striped">
+									<thead class="table-primary">
+										<tr>
+											<th class="align-middle">ID</th>
+                                            <th class="align-middle">Category Name(ID)</th>
+											<th class="align-middle">Name</th>
+											<th class="align-middle">Status</th>
+											<th class="align-middle">Action</th>
+										</tr>
+									</thead>
+									<tbody>	
+										{% if page_obj %}
+										{% for sc in page_obj.object_list %}
+											<tr>
+                                                <td>{{sc.sub_category_id}}</td>
+												<td>{{sc.category_id}}</td>
+												<td>{{sc.sub_category_name}}</td>
+												<td>
+													<span class="badge badge-pill badge-soft-success font-size-12">{{sc.IsActive}}</span>
+												</td>
+												<td>
+													<div class="d-flex gap-3">
+														<a href="{% url 'sub-category-edit' id=sc.sub_category_id %}" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+														<a href="{% url 'sub-category-delete' id=sc.sub_category_id %}" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+										{% else %}
+											<tr>
+                                                <td colspan="5" style="text-align:center;">No Data Available...</td>
+											</tr>
+										{% endif %}
+									</tbody>
+								</table>
+							</div>
+
+							<!-- start Pagination-->
+								<ul class="pagination justify-content-end pagination-sm">
+									{% if page_obj.has_previous %}
+										<li class="page-item"><a href="?page=1"  class="page-link">First</a></li>
+										<li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a></li>
+									{% endif %}
+
+									<li class="page-item"><span class="page-link current">
+										Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+									</span></li>
+
+									{% if page_obj.has_next %}
+										<li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a></li>
+										<li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a></li>
+									{% endif %}
+								</ul>
+							<!-- end Pagination-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- end Sub-Category Details View -->
+
+	<!-- Modal : Add sub-category -->
+        <div class="modal fade" id="ModalFormAddSubCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <form name="fromaddsubcategory" action="{% url 'sub-category' %}" method="post">
+                    {% csrf_token %}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                        </div>
+
+                        <div class="modal-body">
+							<div class="mb-3">
+								<label class="control-label">Category</label>
+								<select class="form-control select2" name="category">
+									<option hidden selected>Select</option>
+									{% for c in cobj %}
+										<option value="{{c.category_name}}">{{c.category_name}}</option>
+									{% endfor %}
+								</select>
+							</div>		
+							<div class="mb-3">
+								<label for="sub_category_name">Sub Category Name</label>
+								<input id="sub_category_name" name="sub_category_name" type="text" class="form-control">
+							</div>
+
+							<div class="mb-3">
+								<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
+								<label for="chk_status">Status</label>
+							</div>
+						</div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save </button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock body %}

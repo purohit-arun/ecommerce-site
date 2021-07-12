@@ -1,0 +1,122 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+    <!-- start contact Details View -->
+		<div class="row">
+			<div class="col-12">
+				<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+					<h4 class="mb-sm-0 font-size-18">Contac Details</h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row mb-2">
+								<div class="col-sm-4">
+									<div class="search-box me-2 mb-2 d-inline-block">
+										<div class="position-relative">
+											<input type="text" class="form-control" placeholder="Search...">
+											<i class="bx bx-search-alt search-icon"></i>
+										</div>
+									</div>
+								</div>
+								<!-- end col-->
+							</div>
+
+							<div class="table-responsive">
+								<table class="table align-middle table-nowrap table-check table-striped">
+									<thead class="table-primary">
+										<tr>
+											<th class="align-middle">Sr. No.</th>
+											<th class="align-middle">Name</th>
+											<th class="align-middle">Email</th>
+											<th class="align-middle">Subject</th>
+                                            <th class="align-middle">Message</th>
+											<th class="align-middle">Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% if page_obj%}
+										{% for c in page_obj.object_list %}
+											<tr>
+												<td>{{c.contact_msg_id}}</td>
+												<td>{{c.contact_name}}</td>
+												<td><a href="mailto:{{c.email}}">{{c.email}}</a></td>
+												<td>{{c.subject}}</td>
+												<td>{{c.message}}</td>
+												<td>	
+													<span class="badge badge-pill badge-soft-warning font-size-12">Pending</span>
+												</td>
+												{% comment %} <td>
+													<div class="d-flex gap-3">
+														<a href="{% url 'category-edit' id=c.category_id %}" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+														<a href="{% url 'category-delete' id=c.category_id %}" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+													</div>
+												</td>
+											</tr> {% endcomment %}
+										{% endfor %}
+										{% else %}
+											<tr>
+                                                <td colspan="6" style="text-align:center;">No Data Available...</td>
+											</tr>
+										{% endif %}
+									</tbody>
+								</table>
+							</div>
+
+							<!-- start Pagination-->
+								<ul class="pagination justify-content-end pagination-sm">
+									{% if page_obj.has_previous %}
+										<li class="page-item"><a href="?page=1"  class="page-link">First</a></li>
+										<li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a></li>
+									{% endif %}
+
+									<li class="page-item"><span class="page-link current">
+										Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+									</span></li>
+
+									{% if page_obj.has_next %}
+										<li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a></li>
+										<li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a></li>
+									{% endif %}
+								</ul>
+							<!-- end Pagination-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- end Category Details View  -->
+
+	<!-- Modal : Add category -->
+        <div class="modal fade" id="ModalFormCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form name="fromaddcategory" action="{% url 'category' %}" method="post">
+                    {% csrf_token %}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                        </div>
+
+                        <div class="modal-body">
+							<div class="mb-3">
+								<label for="category_name">Category Name</label>
+								<input id="category_name" name="category_name" type="text" class="form-control">
+							</div>
+							
+							<div class="mb-3">
+								<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
+								<label for="chk_status">Status</label>
+							</div>					
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save </button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock body %}

@@ -1,0 +1,63 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+
+    <!-- start page title -->
+	<div class="row">
+		<div class="col-12">
+			<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+				<h4 class="mb-sm-0 font-size-18">Edit Slider</h4>
+			</div>
+		</div>
+	</div>
+	<!-- end page title -->
+
+	<!-- startEdit Slider Form -->
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<form name="fromaddcategory" action="{% url 'slider-edit' id=obj.slider_id  %}" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="mb-3">
+										<label for="slider_name">Slider Name</label>
+										<input type="text" id="slider_name" name="slider_name" value="{{obj.slider_name }}"  class="form-control">
+									</div>
+
+									<div class="mb-3">
+										<label for="slider_image">Slider Image</label>
+										<input type="file" id="slider_image" name="slider_image" class="form-control">
+									</div>
+
+									<div class="mb-3">
+										<input type="hidden" id="Inserted_Date" name="Inserted_Date" value="{{obj.InsertedDate }}" class="form-control">
+									</div>
+									
+									<div class="mb-3">
+										{% if obj.IsActive %}
+											<input  type="checkbox" id="chk_IsActive" name="chk_IsActive" class="form-check-input" checked>
+										{% else %}
+											<input  type="checkbox" id="chk_IsActive" name="chk_IsActive" class="form-check-input">
+										{% endif %}
+										<label for="chk_IsActive">Status</label>
+									</div>	
+
+									<div class="d-flex flex-wrap gap-2">
+										<button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
+										<a href="/ap/slider"><button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button></a>
+									</div>		
+								</div>
+
+								<div class="col-sm-6">
+									<div>
+										<img src="/media/{{obj.slider_image}}" alt="{{obj.slider_name}}" class="img-fluid rounded img-fluid ">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+		</div>
+	<!-- end Edit Slider Form -->
+{% endblock body %}

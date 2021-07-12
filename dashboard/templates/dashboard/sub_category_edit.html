@@ -1,0 +1,58 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+    <!-- start page title -->
+	<div class="row">
+		<div class="col-12">
+			<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+				<h4 class="mb-sm-0 font-size-18">Update Sub Category</h4>
+			</div>
+		</div>
+	</div>
+	<!-- end page title -->
+
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+                    <form name="fromEditSubCategory" action="{% url 'sub-category-edit' id=scobj.sub_category_id %}" method="post">
+					{% csrf_token %}
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<label class="control-label">Category</label>
+									<select class="form-control select2" name="category">
+										<option value="{{scobj.category_id}}" hidden>{{scobj.category_name}}</option>
+										{% for c in cobj %}
+											<option value="{{c.category_id}}">{{c.category_name}}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<label for="sub_category_name">Sub Category Name</label>
+									<input type="text" id="sub_category_name" name="sub_category_name" value="{{scobj.sub_category_name}}"  class="form-control">
+								</div>
+							</div>
+
+							<div class="mb-3">
+								{% if  scobj.IsActive %}
+									<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
+								{% else %}
+									<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input">
+								{% endif %}
+								<label for="chk_status">Status</label>
+							</div>
+						</div>
+
+						<div class="d-flex flex-wrap gap-2">
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+							<a href="/ap/sub_category/"><button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	<!-- end row -->
+{% endblock body %}

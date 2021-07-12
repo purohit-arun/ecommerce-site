@@ -1,0 +1,84 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+    <!-- start page title -->
+	<div class="row">
+		<div class="col-12">
+			<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+				<h4 class="mb-sm-0 font-size-18">Add Product</h4>
+			</div>
+		</div>
+	</div>
+	<!-- end page title -->
+
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+
+					<p class="card-title-desc">Fill all information below</p>
+
+					<form name="fromaddproduct" action="{% url 'product-add' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<label for="productname">Product Name</label>
+									<input id="productname" name="product_name" type="text" class="form-control">
+								</div>
+								<div class="mb-3">
+									<label for="productname">Published Date</label>
+									<input id="publisheddate" name="published_date" type="text" class="form-control" placeholder="DD-MM-YYYY" disabled>
+								</div>
+								<div class="mb-3">
+									<label for="price">Price</label>
+									<input id="price" name="price" type="text" class="form-control">
+								</div>
+								<div class="mb-3">
+									<label for="file">Product Image</label>
+									<input type="file" id="product_image" name="product_image"  class="form-control">
+								</div>
+								<div class="mb-3">
+									<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
+									<label for="chk_status">Status</label>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<label class="control-label">Category</label>
+									<select class="form-control select2" name="product_category">
+										<option hidden selected>Select</option>
+										{% for c in cobj %}
+											<option value="{{c.category_id}}">{{c.category_name}}</option>
+										{% endfor %}
+									</select>
+								</div>
+
+								<div class="mb-3">
+									<label class="control-label">Sub Category</label>
+									<select class="form-control select2" name="product_subcategory">
+										<option selected hidden>Select</option>
+										{% for sc in scobj %}
+											<option value="{{sc.sub_category_id}}">{{sc.sub_category_name}}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="productdesc">Product Description</label>
+									<textarea class="form-control" id="product_desc" name="product_desc" rows="5"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex flex-wrap gap-2">
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+							<input type="Reset" class="btn btn-secondary waves-effect waves-light" value="Clear">
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- end row -->
+{% endblock body %}
+
