@@ -9,6 +9,7 @@ class Product(models.Model):
     desc = models.CharField( max_length=100)
     price = models.IntegerField(default="0")
     published_date = models.DateTimeField(null=False)
+    status = models.BooleanField(default=1)
     imag = models.ImageField(upload_to='shop/img', default="")
 
     def __str__(self):
@@ -27,6 +28,7 @@ class Contact(models.Model):
 class Orders(models.Model):
     order_id = models.AutoField(primary_key=True)
     items_json = models.CharField(max_length=5000)
+    amount = models.IntegerField(max_length=100, default=0)
     name = models.CharField(max_length=90)
     email = models.CharField(max_length=90)
     address = models.CharField(max_length=200)
@@ -34,3 +36,14 @@ class Orders(models.Model):
     state = models.CharField(max_length=30)
     zip_code = models.CharField(max_length=10)
     phone = models.IntegerField()
+
+class OrdersUpdate(models.Model):
+    update_id = models.AutoField(primary_key=True)
+    order_id = models.IntegerField(default="")
+    update_desc = models.CharField(max_length=5000)
+    timestamp = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.update_desc[0:7] + "..."
+
+
