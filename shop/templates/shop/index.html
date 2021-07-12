@@ -21,7 +21,7 @@ background-color: blue;
 }
 
 body .carousel-indicators{
-bottom: 0;
+bottom: -25px;
 }
 
 body .carousel-control-prev-icon,
@@ -69,6 +69,7 @@ padding-right: 0;
             <div class="card-body">
               <h5 class="card-title" id="namepr{{i.product_id}}">{{i.product_name}}</h5>
               <p class="card-text">{{i.desc|slice:23}}...</p>
+              <h6 class="card-title">Price : ₹ <span id="pricepr{{i.product_id}}">{{ i.price }}</span></h6>
               <span id="divpr{{ i.product_id }}" class="divpr">
                 <button id="pr{{i.product_id}}" class="btn btn-primary cart">Add To Cart</button>
               </span>
@@ -123,7 +124,8 @@ padding-right: 0;
     } else {
       qty = 1;
       name = document.getElementById('name'+idstr).innerHTML;
-      cart[idstr] = [qty, name];
+      price = document.getElementById('price'+idstr).innerHTML;
+      cart[idstr] = [qty, name, parseInt(price)];
     }
     updateCart(cart);
 
@@ -185,6 +187,13 @@ padding-right: 0;
     cart['pr' + a][0] = cart['pr' + a][0] - 1;
     cart['pr' + a][0] = Math.max(0, cart['pr' + a][0]);
     document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+    if (cart['pr' + a][0] == 0){
+        document.getElementById('divpr' + a).innerHTML = '<button id="pr'+a+'" class="btn btn-primary cart">Add to Cart</button>';
+        delete cart['pr'+a];
+    }
+    else{
+        document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+    }
     updateCart(cart);
   });
   $('.divpr').on("click", "button.plus", function () {

@@ -5,6 +5,7 @@ import json
 from django.db import models
 from .models import Orders, Product, Contact, OrdersUpdate
 from math import ceil
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -46,6 +47,7 @@ def login(request):
 
 
 def contact(request):
+    thank = False
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -54,7 +56,8 @@ def contact(request):
         contact = Contact(contact_name=name, email=email,
                           subject=subject, message=message)
         contact.save()
-    return render(request, 'shop/contact.html')
+        thank = True
+    return render(request, 'shop/contact.html',{'thank' : thank})
 
 
 def tracker(request):
@@ -69,7 +72,7 @@ def tracker(request):
                 updates = []
                 for item in update:
                     updates.append({'text' : item.update_desc, 'time':item.timestamp})
-                    response = json.dumps(updates, default=str)
+                    response = json.dumps([updates,order[0].items_json], default=str)
                 return HttpResponse(response)
             else:
                 return HttpResponse('{}') 
@@ -92,13 +95,14 @@ def checkOut(request):
     if request.method == "POST":
         items_json = request.POST.get('itemJson')
         name = request.POST.get('inputname')
+        amount = request.POST.get('amount')
         email = request.POST.get('inputEmail4')
         address = request.POST.get('inputAddress')
         city = request.POST.get('inputCity')
         state = request.POST.get('state')
         zip_code = request.POST.get('inputZip')
         phone = request.POST.get('phone')
-        order = Orders(items_json = items_json, name=name, email=email, address=address,
+        order = Orders(items_json = items_json, amount = amount, name=name, email=email, address=address,
                        city=city, state=state, zip_code=zip_code, phone=phone)
         order.save()
         update = OrdersUpdate(order_id = order.order_id, update_desc = "Order Placed Successfully")
@@ -106,5 +110,13 @@ def checkOut(request):
         thank = True
         id = order.order_id
         print(f"{id} - {thank}")
-        return render(request, 'shop/checkout.html', {'thank' : thank, 'id' : id})    
+        # return render(request, 'shop/checkout.html', {'thank' : thank, 'id' : id})    
+        # request the paytm to transfer the amount to by bank account paid by user
     return render(request, 'shop/checkout.html')
+
+# for handling the paytm payment request
+@csrf_exempt
+def handlerequest(request):
+    #paytm will send you post request here
+    pass
+

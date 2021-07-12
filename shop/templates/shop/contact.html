@@ -88,4 +88,13 @@
 
 </section>
 <!--Section: Contact v.2-->
+
 {% endblock body %}
+{% block js %}
+<script>
+     {% if thank == True %}
+        alert("Thank for contacting us ");
+    {% endif %}
+</script>
+{% endblock js %}
+
