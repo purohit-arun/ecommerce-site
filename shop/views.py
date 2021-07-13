@@ -2,12 +2,14 @@ from typing import OrderedDict
 from django.shortcuts import render
 from django.http import HttpResponse, response
 import json
+from .paytm import checksum
 from django.db import models
 from .models import Orders, Product, Contact, OrdersUpdate
 from math import ceil
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+MERCHANT_KEY = 'Dt_Y#CKJYVa%NKUH'
 
 
 def index(request):
@@ -57,7 +59,7 @@ def contact(request):
                           subject=subject, message=message)
         contact.save()
         thank = True
-    return render(request, 'shop/contact.html',{'thank' : thank})
+    return render(request, 'shop/contact.html', {'thank': thank})
 
 
 def tracker(request):
@@ -65,17 +67,19 @@ def tracker(request):
         orderID = request.POST.get('orderId')
         email = request.POST.get('email')
         try:
-            order = Orders.objects.filter(order_id = orderID, email = email)
-            print("This is order id for tracking",order,"email",email)
+            order = Orders.objects.filter(order_id=orderID, email=email)
+            print("This is order id for tracking", order, "email", email)
             if len(order) > 0:
-                update = OrdersUpdate.objects.filter(order_id = orderID)
+                update = OrdersUpdate.objects.filter(order_id=orderID)
                 updates = []
                 for item in update:
-                    updates.append({'text' : item.update_desc, 'time':item.timestamp})
-                    response = json.dumps([updates,order[0].items_json], default=str)
+                    updates.append(
+                        {'text': item.update_desc, 'time': item.timestamp})
+                    response = json.dumps(
+                        [updates, order[0].items_json], default=str)
                 return HttpResponse(response)
             else:
-                return HttpResponse('{}') 
+                return HttpResponse('{}')
         except Exception as e:
             return HttpResponse('{}')
     return render(request, 'shop/tracker.html')
@@ -102,21 +106,50 @@ def checkOut(request):
         state = request.POST.get('state')
         zip_code = request.POST.get('inputZip')
         phone = request.POST.get('phone')
-        order = Orders(items_json = items_json, amount = amount, name=name, email=email, address=address,
+        order = Orders(items_json=items_json, amount=amount, name=name, email=email, address=address,
                        city=city, state=state, zip_code=zip_code, phone=phone)
         order.save()
-        update = OrdersUpdate(order_id = order.order_id, update_desc = "Order Placed Successfully")
+        update = OrdersUpdate(order_id=order.order_id,
+                              update_desc="Order Placed Successfully")
         update.save()
+        amount = float(amount)
+        print(f'float -> {amount}')
         thank = True
         id = order.order_id
-        print(f"{id} - {thank}")
-        # return render(request, 'shop/checkout.html', {'thank' : thank, 'id' : id})    
-        # request the paytm to transfer the amount to by bank account paid by user
+        # Request paytm to transfer the amount to your account after payment by user
+        param_dict = {
+            'MID': 'pPzDap69091253306077',
+            'ORDER_ID': str(order.order_id),
+            'TXN_AMOUNT': str(amount),
+            'CUST_ID': email,
+            'INDUSTRY_TYPE_ID': 'Retail',
+            'WEBSITE': 'WEBSTAGING',
+            'CHANNEL_ID': 'WEB',
+            'CALLBACK_URL': 'http://127.0.0.1:8000/shop/handlerequest/',
+
+        }
+        param_dict['CHECKSUMHASH'] = checksum.generate_checksum(param_dict, MERCHANT_KEY)
+        return render(request, 'shop/paytm.html', {'param_dict': param_dict})
+        # return render(request, 'shop/checkout.html', {'thank' : thank, 'id' : id})
     return render(request, 'shop/checkout.html')
 
 # for handling the paytm payment request
+
+
 @csrf_exempt
 def handlerequest(request):
-    #paytm will send you post request here
-    pass
+    # paytm will send you post request here
+    form = request.POST
+    response_dict = {}
+    for i in form.keys():
+        response_dict[i] = form[i]
+        if i == 'CHECKSUMHASH':
+            Checksumm = form[i]
 
+    verify = checksum.verify_checksum(response_dict, MERCHANT_KEY, Checksumm)
+    if verify:
+        if response_dict['RESPCODE'] == '01':
+            print('order successful')
+        else:
+            print('order was not successful because' + response_dict['RESPMSG'])
+    return render(request, 'shop/paymentstatus.html', {'response': response_dict})
