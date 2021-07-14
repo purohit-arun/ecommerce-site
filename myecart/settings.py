@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'shop.apps.ShopConfig',
+    'blog.apps.BlogConfig',
     'dashboard.apps.DashboardConfig', #Dashboard (Admin)
     'django.contrib.admin',
     'django.contrib.auth',
