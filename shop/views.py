@@ -7,6 +7,7 @@ from django.db import models
 from .models import Orders, Product, Contact, OrdersUpdate
 from math import ceil
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages #Alert Message
 
 # Create your views here.
 MERCHANT_KEY = 'Dt_Y#CKJYVa%NKUH'
@@ -59,6 +60,7 @@ def contact(request):
                           subject=subject, message=message)
         contact.save()
         thank = True
+        messages.success(request,'Thank for contacting us')
     return render(request, 'shop/contact.html', {'thank': thank})
 
 
@@ -153,3 +155,7 @@ def handlerequest(request):
         else:
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
+
+
+def user_index(request):
+    return render(request,'shop/home.html')

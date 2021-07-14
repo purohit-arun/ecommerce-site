@@ -11,5 +11,9 @@ urlpatterns = [
      path('products/<int:id>', views.productView, name='productView'),
      path('checkout/', views.checkOut, name='checkOut'),
      path('handlerequest/', views.handlerequest, name='HandleRequest'),
+
+     #Shubham
+
+     path('home/', views.user_index, name='home'),
 ]
  
