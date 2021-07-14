@@ -56,7 +56,7 @@ ROOT_URLCONF = 'myecart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['myecart/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
