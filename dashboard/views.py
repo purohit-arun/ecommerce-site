@@ -62,12 +62,14 @@ def slider(request):
     if request.method == "POST":
         sname = request.POST.get('slider_name')
         simage= request.FILES['slider_image']        
+        stitle = request.POST.get('slider_title')
+        sdesc = request.POST.get('slider_description')
         Status = request.POST.get('chk_IsActive')
         if Status=='on':
             isActive='True'
         else:
             isActive='False'
-        Slider.objects.create(slider_name = sname, slider_image = simage, InsertedDate = datetime.now(),UpdatedDate=datetime.now(), IsActive = isActive)
+        Slider.objects.create(slider_name = sname, slider_image = simage,title = stitle, desc = sdesc, InsertedDate = datetime.now(),UpdatedDate=datetime.now(), IsActive = isActive)
         messages.success(request,'Inserted Successfully.')
         return redirect('slider')
     else:
@@ -92,6 +94,8 @@ def slider_edit(request,id):
             if len(slider_update.slider_image) > 0:
                 os.remove(slider_update.slider_image.path)
             slider_update.slider_image = request.FILES['slider_image']
+        slider_update.title = request.POST.get('slider_title')
+        slider_update.desc = request.POST.get('slider_description')
         slider_update.InsertedDate = datetime.now() #request.POST.get('Inserted_Date')
         slider_update.UpdatedDate = datetime.now()
         
@@ -122,8 +126,9 @@ def product_add(request):
         pname = request.POST.get('product_name')
         #pdate = datetime.now()
         price = request.POST.get('price')
-        pimage= request.FILES['product_image']        
-        pcategory = request.POST.get('product_category')
+        pimage= request.FILES['product_image']     
+        cid = request.POST.get('product_category')  
+        pcategory = Category.objects.get(category_id=cid)
         #psubcategory = requset.POST['product_subcategory']
         pdesc = request.POST.get('product_desc')
         Product.objects.create(product_name=pname, published_date=datetime.now(),price=price, category=pcategory, desc=pdesc,imag=pimage)
@@ -161,11 +166,12 @@ def product_edit(request,id):
             if len(update_product.imag) > 0:
                 os.remove(update_product.imag.path)
             update_product.imag = request.FILES['product_image']
-        update_product.category = request.POST['product_category']
+        category_id = request.POST.get('product_category')
+        update_product.category = Category.objects.get(category_id=category_id)
         #psubcategory = requset.POST['product_subcategory']
         update_product.desc = request.POST.get('product_desc')
         update_product.save()
-        messages.success(request,"Add Product Successfully.")
+        messages.success(request,"Update Product Successfully.")
         return redirect('product-details')
     else:
         return render(request,'dashboard/product_edit.html',{'obj':update_product,'cobj':category,'scobj':sub_category})
@@ -182,12 +188,13 @@ def category(request):
     #add
     if request.method=="POST":
         cname = request.POST['category_name']
+        cimage= request.FILES['category_image']  
         cstatus = request.POST['chk_status']
         if cstatus=='on':
             Status='True'
         else:
             Status='False'
-        Category.objects.create(category_name=cname, IsActive=Status)
+        Category.objects.create(category_name=cname,category_image=cimage, IsActive=Status)
         messages.success(request,"Add successfully...")
         return redirect('category')
     else:
@@ -207,6 +214,10 @@ def category_edit(request,id):
     update_category = Category.objects.get(category_id=id)
     if request.method=="POST":
         update_category.category_name = request.POST.get('category_name')
+        if len(request.FILES) != 0:
+            if len(update_category.category_image) > 0:
+                os.remove(update_category.category_image.path)
+            update_category.category_image = request.FILES['category_image']
         cstatus = request.POST.get('chk_status')
         if cstatus=='on':
             update_category.IsActive='True'

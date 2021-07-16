@@ -40,7 +40,8 @@
 												<label class="form-check-label" for="checkAll"></label>
 											</div>
 										</th>
-										<th class="align-middle">Product ID</th>
+										<th class="align-middle">Sr. No</th>
+										<th class="align-middle">Category</th>
 										<th class="align-middle">Image</th>
 										<th class="align-middle">Product Name</th>
 										<th class="align-middle">Price</th>
@@ -60,7 +61,8 @@
 													<label class="form-check-label" for="orderidcheck01"></label>
 												</div>
 											</td>
-											<td>{{p.product_id}}</td>
+											<td>{{forloop.counter}}</td>
+											<td>{{p.category}}</td>
 											<td><img src="/media/{{p.imag|default_if_none:'#'}}" alt="{{p.imag}}" style="height:50px" ></td>
 											<td>{{p.product_name}}</td>
 											<td>{{p.price}}</td>
@@ -150,7 +152,7 @@
 										<select class="form-control select2" name="product_category">
 											<option hidden selected>Select</option>
 											{% for c in cobj %}
-												<option value="{{c.category_name}}">{{c.category_name}}</option>
+												<option value="{{c.category_id}}">{{c.category_name}}</option>
 											{% endfor %}
 										</select>
 									</div>
