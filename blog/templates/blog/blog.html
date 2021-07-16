@@ -1,0 +1,82 @@
+{% extends 'shop/base.html' %}
+{% block title %}Blog{% endblock title %}
+{% block css %}
+
+{% endblock css %}
+
+{% block body %}
+
+  <div class="breadbg">
+      <div class="container">
+        <div class="row">
+            <ul class="breadcrumb">
+              <li><a href="/shop/home"><i class="fa fa-home"></i></a></li>
+              <li><a href="#">Blogs</a></li>
+            </ul>
+        </div>
+      </div>
+  </div>
+
+  <div class="container">
+      <div class="row">
+        <div id="content" class="col-sm-12">
+            <div class="panel-default webi_blog_page">
+              {% for blog in myposts %}
+
+                <div class="allmb">
+                  <div class="row">
+                      <div class="col-md-6 col-lg-5 col-sm-6 col-xs-12">
+                        <div class="webi-blog-image">
+                            <div class="blog-post-image-hover"> </div>
+                            <img src="/media/{{blog.thumbnail}}" alt="Blogs" title="Blogs" class="img-responsive" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-7 col-sm-6 col-xs-12 allcomment">
+                        <h5>
+                            <a href="indexed5d.html?route=information/blogger&amp;blogger_id=5">{{blog.title}}</a>
+                        </h5>
+                        <div class="blog_links">
+                            <span class="blog-date">{{blog.publish_date}}</span>
+                        </div>
+                        <div class="blog-desc">
+                            <p>{{blog.chead0|slice:500}}...</p>
+                        </div>
+                        <div class="read-more"> <a href="single_blog/{{blog.blog_id}}" class="btn btn-primary">read more</a> </div>
+                      </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+  </div>
+
+
+{% comment %} <!-- blog template -->
+<div class="row mb-2 my-4 mx-4">
+  {% for item in myposts %}
+  <div class="col-md-6">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+        <!-- <strong class="d-inline-block mb-2 text-primary">World</strong>-->
+        <h3 class="mb-0">{{ item.title }}</h3>
+        <div class="mb-1 text-muted">{{ item.publish_date }}</div>
+        <p class="card-text mb-auto">{{item.chead0|slice:100}}...</p>
+        <a href="blogpost/{{item.blog_id}}" class="stretched-link">Continue reading</a>
+      </div>
+      <div class="col-auto d-none d-lg-block">
+        <img src="/media/{{item.thumbnail}}" class="img-rounded" width="200px" height="200px" alt="">
+          <title>Placeholder</title>
+      </div>
+    </div>
+  </div>
+  {% if forloop.counter|divisibleby:2 %}
+</div>
+<div class="row mb-2 my-4 mx-4">
+  {% endif %}
+  {% endfor %}
+</div> {% endcomment %}
+{% endblock body %}
+
+{% block js %}
+{% endblock js %}
