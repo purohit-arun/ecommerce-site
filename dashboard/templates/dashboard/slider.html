@@ -76,6 +76,8 @@
 											<th class="align-middle">ID</th>
 											<th class="align-middle">Name</th>
                                             <th class="align-middle">Image</th>
+											<th class="align-middle">Title</th>
+											<th class="align-middle">Description</th>
 											<th class="align-middle">Status</th>
 											<th class="align-middle">Action</th>
 										</tr>
@@ -89,7 +91,10 @@
                                                 <td><picture>
                                                         <source srcset="/media/{{s.slider_image}}" media="(max-width: 100px, max-height: 50px)">
                                                         <img src="/media/{{s.slider_image|default_if_none:'#'}}"  style="max-width: 100px; max-height: 50px;"  alt="{{s.slider_name}}">
-                                                    </picture></td>
+                                                    </picture>
+												</td>
+												<td>{{s.title}}</td>
+												<td>{{s.desc}}</td>
 												<td>	 
 													<span class="badge badge-pill badge-soft-success font-size-12">{{s.IsActive}}</span>
 												</td>
@@ -136,7 +141,7 @@
 
 	<!-- Modal : Add category -->
         <div class="modal fade" id="ModalFormAddSlider" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form name="fromaddslider" action="{% url 'slider' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -145,20 +150,34 @@
                         </div>
 
                         <div class="modal-body">
-							<div class="mb-3">
-								<label for="slider_name">Slider Name</label>
-								<input type="text" id="slider_name" name="slider_name"  class="form-control">
-							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="mb-3">
+										<label for="slider_name">Name</label>
+										<input type="text" id="slider_name" name="slider_name"  class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="slider_image">Image</label>
+										<input type="file" id="slider_image" name="slider_image"  class="form-control">
+									</div>
+									<div class="mb-3">
+										<input  type="checkbox" id="chk_IsActive" name="chk_IsActive" class="form-check-input" checked>
+										<label for="chk_IsActive">Status</label>
+									</div>
+								</div>
 
-                            <div class="mb-3">
-								<label for="slider_image">Slider Image</label>
-								<input type="file" id="slider_image" name="slider_image"  class="form-control">
-							</div>
-							
-							<div class="mb-3">
-								<input  type="checkbox" id="chk_IsActive" name="chk_IsActive" class="form-check-input" checked>
-								<label for="chk_IsActive">Status</label>
-							</div>					
+								<div class="col-sm-6">
+									<div class="mb-3">
+										<label for="slider_title">Title</label>
+										<input type="text" id="slider_title" name="slider_title"  class="form-control">
+									</div>
+									<div class="mb-3">
+										<label for="slider_description">Description</label>
+										<textarea class="form-control" id="slider_description" name="slider_description" rows="5"></textarea>
+									</div>
+								</div>
+							</div>							
+										
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save </button>

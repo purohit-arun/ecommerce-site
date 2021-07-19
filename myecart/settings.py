@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'shop.apps.ShopConfig',
+    'blog.apps.BlogConfig',
     'dashboard.apps.DashboardConfig', #Dashboard (Admin)
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'myecart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['myecart/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

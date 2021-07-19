@@ -15,7 +15,7 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					<form name="FromeEditCategory" action="{% url 'category-edit' id=cobj.category_id %}" method="post">
+					<form name="FromeEditCategory" action="{% url 'category-edit' id=cobj.category_id %}" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 						<div class="row">
 							<div class="col-sm-6">
@@ -23,7 +23,12 @@
 									<label for="category_name">Category Name</label>
 									<input id="category_name" name="category_name" type="text" value="{{cobj.category_name}}" class="form-control">
 								</div>
-								
+
+								<div class="mb-3">
+									<label for="category_image">Category Image</label>
+									<input type="file" id="category_image" name="category_image"  class="form-control">
+								</div>
+
 								<div class="mb-3">
 									{% if cobj.IsActive %}
                                     	<input  type="checkbox" id="chk_status" name="chk_status" class="form-check-input" checked>
@@ -33,10 +38,16 @@
 									<label for="chk_status">Status</label>
 								</div>													
 							</div>
+
+							<div class="col-sm-6">
+								<div class="mb-3">
+									<img src="/media/{{cobj.category_image}}" alt="{{cobj.category_name}}" class="img-fluid rounded img-fluid ">
+								</div>
+							</div>
 						</div>
 
 						<div class="d-flex flex-wrap gap-2">
-							<button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
 							<a href="/ap/category"><button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button></a>
 						</div>
 					</form>

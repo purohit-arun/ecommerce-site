@@ -1,2 +1,5 @@
 .vscode
 .idea
+shop/templates/shop/rough.html
+*.pyc
+.sqlite3

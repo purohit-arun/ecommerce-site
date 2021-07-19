@@ -1,0 +1,97 @@
+{% extends 'shop/base.html' %}
+
+{% block title%}
+    {{post.title}}
+{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="breadbg">
+    <div class="container">
+        <div class="row">
+            <ul class="breadcrumb">
+            <li><a href="/shop/home"><i class="fa fa-home"></i></a></li>
+            <li><a href="/blog/">Blogs</a></li>
+            <li><a href="/blog/single_blog/{{post.blog_id}}">{{post.title}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-sm-12 webi-single-blog acpage">
+            <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12 blogsticky">
+                <div class="webi-blog-image">
+                    <img src="/media/{{post.thumbnail}}" alt="{{post.title}}" class="img-responsive" />
+                </div>
+                <div class="sngblog">
+                    <h2>{{post.head0}}</h2>
+                   <div class="blog-desc">
+                        <p>{{post.chead0}}</p>
+                    </div>
+                </div>
+
+                <div class="sngblog">
+                    <h2>{{post.head1}}</h2>
+                   <div class="blog-desc">
+                        <p>{{post.chead1}}</p>
+                    </div>
+                </div>
+
+                <div class="sngblog">
+                    <h2>{{post.head2}}</h2>
+                   <div class="blog-desc">
+                        <p>{{post.chead2}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12 blogal">
+                <div class="block-title">
+                    <h3>
+                        Add Comment
+                    </h3>
+                </div>
+                <div class="" id="add-comment-blog" style="margin-bottom: 10px;">
+                    <div class="fb-like" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
+            </div><!-- /.blog-post -->
+            
+            <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-width="" data-numposts="2"></div>
+        </div><!-- /.blog-main -->
+                    <!--
+                    <form action="https://opencart.dostguru.com/MS13/readymart_03/index.php?route=information/blogger&amp;blogger_id=3" method="post" enctype="multipart/form-data" class="">
+                        <div class="form-group required" style="margin-top: 10px;">
+                        <div>
+                            <input type="text" name="author" value="" id="input-author" placeholder="Author" class="form-control" />
+                        </div>
+                        </div>
+                        <div class="form-group required" style="margin-top: 10px;">
+                        <div>
+                            <input type="text" name="email" value="" id="input-email" placeholder="E-Mail Address" class="form-control" />
+                        </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 10px;">
+                        <div>
+                            <textarea name="comment" rows="10" id="input-comment" class="form-control"  value="Comment" placeholder="Comment"/></textarea>
+                        </div>
+                        </div>
+                        <input type="hidden" name="auto_approve" value="1" />
+                        <div class="buttons text-left">
+                        <input class="btn btn-primary" type="submit" value="Submit" data-toggle="tooltip" title="Submit" />
+                        </div>
+                    </form>
+                -->
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

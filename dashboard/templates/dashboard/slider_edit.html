@@ -20,20 +20,23 @@
 						{% csrf_token %}
 							<div class="row">
 								<div class="col-sm-6">
+									<input type="hidden" id="Inserted_Date" name="Inserted_Date" value="{{obj.InsertedDate}}" class="form-control">
+									
 									<div class="mb-3">
 										<label for="slider_name">Slider Name</label>
 										<input type="text" id="slider_name" name="slider_name" value="{{obj.slider_name }}"  class="form-control">
 									</div>
 
 									<div class="mb-3">
-										<label for="slider_image">Slider Image</label>
-										<input type="file" id="slider_image" name="slider_image" class="form-control">
+										<label for="slider_title">Title</label>
+										<input type="text" id="slider_title" name="slider_title" value="{{obj.title}}"  class="form-control">
 									</div>
 
 									<div class="mb-3">
-										<input type="hidden" id="Inserted_Date" name="Inserted_Date" value="{{obj.InsertedDate }}" class="form-control">
+										<label for="slider_description">Description</label>
+										<textarea class="form-control" id="slider_description" name="slider_description" rows="5">{{obj.desc}}</textarea>
 									</div>
-									
+
 									<div class="mb-3">
 										{% if obj.IsActive %}
 											<input  type="checkbox" id="chk_IsActive" name="chk_IsActive" class="form-check-input" checked>
@@ -50,7 +53,12 @@
 								</div>
 
 								<div class="col-sm-6">
-									<div>
+									<div class="mb-3">
+										<label for="slider_image">Slider Image</label>
+										<input type="file" id="slider_image" name="slider_image" class="form-control">
+									</div>
+
+									<div class="mb-3">
 										<img src="/media/{{obj.slider_image}}" alt="{{obj.slider_name}}" class="img-fluid rounded img-fluid ">
 									</div>
 								</div>
