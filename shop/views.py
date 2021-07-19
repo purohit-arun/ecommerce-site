@@ -5,6 +5,7 @@ import json
 from .paytm import checksum
 from django.db import models
 from .models import Orders, Product, Contact, OrdersUpdate
+from dashboard.models import Slider, Category
 from math import ceil
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages #Alert Message
@@ -51,6 +52,7 @@ def login(request):
 
 def contact(request):
     thank = False
+    view_category = Category.objects.all().filter(IsActive=True)
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -61,7 +63,7 @@ def contact(request):
         contact.save()
         thank = True
         messages.success(request,'Thank for contacting us')
-    return render(request, 'shop/contact.html', {'thank': thank})
+    return render(request, 'shop/contact.html', {'thank': thank,'view_category':view_category})
 
 
 def tracker(request):
@@ -158,4 +160,29 @@ def handlerequest(request):
 
 
 def user_index(request):
-    return render(request,'shop/home.html')
+    view_slider = Slider.objects.all().filter(IsActive=True)
+    view_category = Category.objects.all().filter(IsActive=True)
+
+    allProds = []
+    print('Product all prods', allProds, '\n')
+    catProds = Product.objects.values('category', 'product_id')
+    print('Printing catProds', catProds, '\n')
+    cats = {item['category'] for item in catProds}
+    print("Printing cats", cats)
+    for cat in cats:
+        prod = Product.objects.filter(category=cat)
+        n = len(prod)
+        print(n)
+        nSlides = n//4 + ceil((n/4) - (n//4))
+        print(nSlides)
+        print(prod)
+        allProds.append([prod, range(1, nSlides), nSlides])
+        params = {'allProds': allProds,'view_slider':view_slider,'view_category':view_category}
+    return render(request, 'shop/home.html', params)
+    # return render(request,'shop/home.html',{'view_slider':view_slider,'view_category':view_category})
+
+def single_product(request,id):
+    if request.method == 'GET':
+        view_category = Category.objects.all().filter(IsActive=True)
+        view_product = Product.objects.all().filter(category=id)
+    return render(request,'shop/product_single.html',{'view_category':view_category,'view_product':view_product})

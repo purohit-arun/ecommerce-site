@@ -1,11 +1,11 @@
 from django.db import models
-
+from dashboard.models import Category
 # Create your models here.
 
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=50) 
-    category = models.CharField(max_length=70,default="")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     desc = models.CharField( max_length=100)
     price = models.IntegerField(default="0")
     published_date = models.DateTimeField(null=False)
@@ -14,6 +14,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    @staticmethod
+    def get_productby_id(id):
+        return Product.objects.filter(product_id__in=id)
+
+    @staticmethod
+    def get_all_product_by_category_id(cid):
+        if cid:
+            return Product.objects.filter(category = cid)
+        else:
+            return Product.objects.all()
 
 class Contact(models.Model):
     contact_msg_id = models.AutoField(primary_key=True)

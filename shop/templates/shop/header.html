@@ -197,7 +197,7 @@
                               </svg>
                            </div>
                            <span id="cart-total" class="hdis text-left">
-                              <p class="carth">0</p>
+                              <p class="carth"></p>
                               <div>My Cart</div>
                            </span>
                         </button>
@@ -213,283 +213,135 @@
          </div>
       </div>
    </div>
-   <div class="homemenu">
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-2 col-xs-12 head-menu text-left">
-               <div class="menurel">
-                  <nav id="menu" class="navbar">
-                     <div class="navbar-header">
-                        <button type="button" class="btn btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-                     </div>
-                     <div id="pt_vegamenu" class="title-menu wr-left-menu hidden-xs">
-                        <div id="wr-menu-icon">
-                           <div class="wr-menu collapsed" data-toggle="collapse" data-target="#under-menu" aria-expanded="false">
-                              <button class="btn-navbar navbar-toggle" type="button" data-toggle="collapse">
-                                 <div class="ico-menu">
-                                    <div class="bar"></div>
-                                    <div class="bar"></div>
-                                    <div class="bar"></div>
-                                 </div>
-                              </button>
-                              <span class="cate">All Categories</span>
-                              <i class="fa fa-angle-down"></i>
-                           </div>
+       <div class="homemenu">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-12 head-menu text-left">
+                           <!--Start Category -->
+                              <div class="menurel">
+                                 <nav id="menu" class="navbar">
+                                    <div class="navbar-header">
+                                       <button type="button" class="btn btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                                    </div>
+                                    <div id="pt_vegamenu" class="title-menu wr-left-menu hidden-xs">
+                                       <div id="wr-menu-icon">
+                                          <div class="wr-menu" data-toggle="collapse" data-target="#under-menu">
+                                             <button class="btn-navbar navbar-toggle" type="button" data-toggle="collapse">
+                                                <div class="ico-menu">
+                                                   <div class="bar"></div>
+                                                   <div class="bar"></div>
+                                                   <div class="bar"></div>
+                                                </div>
+                                             </button>
+                                             <span class="cate">All Categories</span>
+                                             <i class="fa fa-angle-down"></i>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div id="mySidenav" class="sidenav">
+                                       <div id="under-menu" class="collapse">
+                                          <div class="close-nav hidden-sm hidden-md hidden-lg hidden-xl">
+                                             <span class="categories">Category</span>
+                                             <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fa fa-close"></i></a>
+                                          </div>
+                                          <div class="collapse navbar-collapse navbar-ex1-collapse">
+                                             <ul class="nav navbar-nav site-nav">
+                                                <!--Start Category View-->
+
+                                                {% for category in view_category%} 
+                                                <li class="moremenu">
+                                                   {% comment %} <a href="{% url 'single-product' 1 %}" class="bmenu"> {% endcomment %}
+                                                   <a href="/shop/single_product/{{category.category_id}}" class="bmenu">
+                                                      <div class="thumb_img pull-left">
+                                                         <img src="/media/{{category.category_image}}" alt="{{category.category_name}}">
+                                                      </div>
+                                                      {{category.category_name}}
+                                                   </a>
+                                                </li>
+                                                {% endfor %}
+                                                
+                                                <!--End Category View-->
+
+                                                <li class="dropdown moremenu">
+                                                   <a href="index98dc.html?route=product/category&amp;path=20" class="dropdown-toggle header-menu" data-toggle="dropdown">
+                                                      <div class="thumb_img pull-left">
+                                                         <img src="/static/image/catalog/category/14.jpg" alt="Desktops">
+                                                      </div>
+                                                      Desktops
+                                                      <i class="fa fa-angle-down pull-right enangle"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu">
+                                                      <div class="dropdown-inner">
+                                                         <ul class="list-unstyled">
+                                                            <!--3rd level-->
+                                                            <li class="dropdown-submenu">
+                                                               <a href="indexd9fe.html?route=product/category&amp;path=20_26" class="submenu-title"> PC (0) </a>
+                                                               <ul class="list-unstyled grand-child">
+                                                                  <li> <a href="index8b5f.html?route=product/category&amp;path=26_43"> test 11 (0) </a> </li>
+                                                                  <li> <a href="indexabcf.html?route=product/category&amp;path=26_47"> test 15 (0) </a> </li>
+                                                               </ul>
+                                                            </li>
+                                                            <!--3rd level over-->
+                                                         </ul>
+                                                         <ul class="list-unstyled">
+                                                            <!--3rd level-->
+                                                            <li class="dropdown-submenu">
+                                                               <a href="indexf345.html?route=product/category&amp;path=20_27" class="submenu-title"> Mac (0) </a>
+                                                               <ul class="list-unstyled grand-child">
+                                                                  <li> <a href="indexa508.html?route=product/category&amp;path=27_44"> test 12 (0) </a> </li>
+                                                                  <li> <a href="index46c1.html?route=product/category&amp;path=27_48"> test 16 (0) </a> </li>
+                                                               </ul>
+                                                            </li>
+                                                            <!--3rd level over-->
+                                                         </ul>
+                                                         <a href="index98dc.html?route=product/category&amp;path=20" class="see-all visible-xs">Show All Desktops</a> 
+                                                      </div>
+                                                   </div>
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </nav>
+                              </div>
+
+                              <!-- Category script-->
+                                 <script type="text/javascript">
+                                    function headermenu() {
+                                       if (jQuery(window).width() < 768)
+                                       {
+                                          jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle","dropdown");        
+                                       }
+                                       else
+                                       {
+                                          jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle",""); 
+                                       }
+                                    }
+                                    $(document).ready(function(){headermenu();});
+                                    jQuery(window).resize(function() {headermenu();});
+                                    jQuery(window).scroll(function() {headermenu();});
+                                 </script>
+                           <!--End Category -->
                         </div>
-                     </div>
-                     <div id="mySidenav" class="sidenav">
-                        <div id="under-menu" class="collapse" aria-expanded="false" style="height: 0px;">
-                           <div class="close-nav hidden-sm hidden-md hidden-lg hidden-xl">
-                              <span class="categories">Category</span>
-                              <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fa fa-close"></i></a>
-                           </div>
-                           {% comment %} <div class="collapse navbar-collapse navbar-ex1-collapse">
-                              <ul class="nav navbar-nav site-nav">
-                                 <li class="dropdown moremenu">
-                                    <a href="index98dc.html?route=product/category&amp;path=20" class="dropdown-toggle header-menu" data-toggle="">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/14.jpg" alt="Desktops">
-                                       </div>
-                                       Desktops
-                                       <i class="fa fa-angle-down pull-right enangle"></i>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                       <div class="dropdown-inner">
-                                          <ul class="list-unstyled">
-                                             <!--3rd level-->
-                                             <li class="dropdown-submenu">
-                                                <a href="indexd9fe.html?route=product/category&amp;path=20_26" class="submenu-title"> PC (0) </a>
-                                                <ul class="list-unstyled grand-child">
-                                                   <li> <a href="index8b5f.html?route=product/category&amp;path=26_43"> test 11 (0) </a> </li>
-                                                   <li> <a href="indexabcf.html?route=product/category&amp;path=26_47"> test 15 (0) </a> </li>
-                                                </ul>
-                                             </li>
-                                             <!--3rd level over-->
-                                          </ul>
-                                          <ul class="list-unstyled">
-                                             <!--3rd level-->
-                                             <li class="dropdown-submenu">
-                                                <a href="indexf345.html?route=product/category&amp;path=20_27" class="submenu-title"> Mac (0) </a>
-                                                <ul class="list-unstyled grand-child">
-                                                   <li> <a href="indexa508.html?route=product/category&amp;path=27_44"> test 12 (0) </a> </li>
-                                                   <li> <a href="index46c1.html?route=product/category&amp;path=27_48"> test 16 (0) </a> </li>
-                                                </ul>
-                                             </li>
-                                             <!--3rd level over-->
-                                          </ul>
-                                          <a href="index98dc.html?route=product/category&amp;path=20" class="see-all visible-xs">Show All Desktops</a> 
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li class="moremenu">
-                                    <a href="index8e1e.html?route=product/category&amp;path=31" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/12.jpg" alt="Scanners">
-                                       </div>
-                                       Scanners
-                                    </a>
-                                 </li>
-                                 <li class="dropdown moremenu">
-                                    <a href="index8122.html?route=product/category&amp;path=34" class="dropdown-toggle header-menu" data-toggle="">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/10.jpg" alt="MP3 Players">
-                                       </div>
-                                       MP3 Players
-                                       <i class="fa fa-angle-down pull-right enangle"></i>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                       <div class="dropdown-inner">
-                                          <ul class="list-unstyled">
-                                             <!--3rd level-->
-                                             <li class="dropdown-submenu">
-                                                <a href="indexd86f.html?route=product/category&amp;path=34_38" class="submenu-title"> Mice (0) </a>
-                                                <ul class="list-unstyled grand-child">
-                                                   <li> <a href="index7d70.html?route=product/category&amp;path=38_56"> test 24 (0) </a> </li>
-                                                   <li> <a href="indexf882.html?route=product/category&amp;path=38_42"> test 9 (0) </a> </li>
-                                                </ul>
-                                             </li>
-                                             <!--3rd level over-->
-                                          </ul>
-                                          <ul class="list-unstyled">
-                                             <!--3rd level-->
-                                             <li class="dropdown-submenu">
-                                                <a href="index7fe6.html?route=product/category&amp;path=34_41" class="submenu-title"> Notebooks (0) </a>
-                                                <ul class="list-unstyled grand-child">
-                                                   <li> <a href="index44ec.html?route=product/category&amp;path=41_51"> test 19 (0) </a> </li>
-                                                   <li> <a href="indexc0a0.html?route=product/category&amp;path=41_39"> test 6 (0) </a> </li>
-                                                </ul>
-                                             </li>
-                                             <!--3rd level over-->
-                                          </ul>
-                                          <a href="index8122.html?route=product/category&amp;path=34" class="see-all visible-xs">Show All MP3 Players</a> 
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li class="dropdown moremenu">
-                                    <a href="index7fa3.html?route=product/category&amp;path=18" class="dropdown-toggle header-menu" data-toggle="">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/15.jpg" alt="Laptops">
-                                       </div>
-                                       Laptops
-                                       <i class="fa fa-angle-down pull-right enangle"></i>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                       <div class="dropdown-inner">
-                                          <ul class="list-unstyled">
-                                             <!--3rd level-->
-                                             <li class="dropdown-submenu">
-                                                <a href="index9f41.html?route=product/category&amp;path=18_46" class="submenu-title"> Macs (0) </a>
-                                                <ul class="list-unstyled grand-child">
-                                                   <li> <a href="index7c70.html?route=product/category&amp;path=46_50"> test 18 (0) </a> </li>
-                                                   <li> <a href="indexc34f.html?route=product/category&amp;path=46_52"> test 20 (0) </a> </li>
-                                                </ul>
-                                             </li>
-                                             <!--3rd level over-->
-                                          </ul>
-                                          <ul class="list-unstyled">
-                                             <!--3rd level-->
-                                             <li class="dropdown-submenu">
-                                                <a href="index8470.html?route=product/category&amp;path=18_45" class="submenu-title"> Windows (0) </a>
-                                                <ul class="list-unstyled grand-child">
-                                                   <li> <a href="index3528.html?route=product/category&amp;path=45_49"> test 17 (0) </a> </li>
-                                                   <li> <a href="index605f.html?route=product/category&amp;path=45_54"> test 22 (0) </a> </li>
-                                                </ul>
-                                             </li>
-                                             <!--3rd level over-->
-                                          </ul>
-                                          <a href="index7fa3.html?route=product/category&amp;path=18" class="see-all visible-xs">Show All Laptops</a> 
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li class="moremenu">
-                                    <a href="index70a9.html?route=product/category&amp;path=57" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/1.jpg" alt="Tablets">
-                                       </div>
-                                       Tablets
-                                    </a>
-                                 </li>
-                                 <li class="moremenu">
-                                    <a href="indexb152.html?route=product/category&amp;path=17" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/2.jpg" alt="Software">
-                                       </div>
-                                       Software
-                                    </a>
-                                 </li>
-                                 <li class="moremenu">
-                                    <a href="indexc957.html?route=product/category&amp;path=24" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/5.jpg" alt="Phones &amp; PDAs">
-                                       </div>
-                                       Phones &amp; PDAs
-                                    </a>
-                                 </li>
-                                 <li class="moremenu">
-                                    <a href="index68ea.html?route=product/category&amp;path=33" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/13.jpg" alt="Cameras">
-                                       </div>
-                                       Cameras
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="index6067.html?route=product/category&amp;path=60" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/7.jpg" alt="fashion">
-                                       </div>
-                                       fashion
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="index8cc5.html?route=product/category&amp;path=29" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/3.jpg" alt="Trackballs">
-                                       </div>
-                                       Trackballs
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="index103d.html?route=product/category&amp;path=32" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/8.jpg" alt="Web Cameras">
-                                       </div>
-                                       Web Cameras
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="index73b3.html?route=product/category&amp;path=59" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/9.jpg" alt="fruits">
-                                       </div>
-                                       fruits
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="index1647.html?route=product/category&amp;path=25" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/6.jpg" alt="Components">
-                                       </div>
-                                       Components
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="index13cb.html?route=product/category&amp;path=28" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/4.jpg" alt="Monitors">
-                                       </div>
-                                       Monitors
-                                    </a>
-                                 </li>
-                                 <li class="moremenu wr_hide_menu" style="display: none;">
-                                    <a href="indexc262.html?route=product/category&amp;path=30" class="bmenu">
-                                       <div class="thumb_img pull-left">
-                                          <img src="/static/image/catalog/category/11.jpg" alt="Printers">
-                                       </div>
-                                       Printers
-                                    </a>
-                                 </li>
-                                 <li class="view_more"><a class="dropdown-item"><i class="fa fa-plus"></i> More</a></li>
+
+                        <!--Start Menu -->
+                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs manun text-left">
+                              <ul class="list-inline st-menu hidden-xs">
+                                 <li><a href="/shop/home">Home</a></li>
+                                 <li><a href="index71ba.html?route=account/return/add">return</a></li>
+                                 <li><a href="/blog/">blog</a></li>
+                                 <li><a href="/shop/contact">contact</a></li>
                               </ul>
+                           </div>
+
+                           {% comment %} <div id="top-links" class="col-lg-2 col-md-2 col-sm-8 col-xs-12 text-right hidden-sm hidden-xs">
+                              <svg width="25px" height="25px">
+                                 <use xlink:href="#sale"></use>
+                              </svg>
+                              <a href="indexf110.html?route=product/special"> special offer! </a>
                            </div> {% endcomment %}
-                        </div>
+                        <!--Start Menu -->
                      </div>
-                  </nav>
+                  </div>
                </div>
-               <script type="text/javascript">
-                  function headermenu() {
-                      if (jQuery(window).width() < 768)
-                      {
-                          jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle","dropdown");        
-                      }
-                      else
-                      {
-                          jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle",""); 
-                      }
-                  }
-                  $(document).ready(function(){headermenu();});
-                  jQuery(window).resize(function() {headermenu();});
-                  jQuery(window).scroll(function() {headermenu();});
-               </script>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs manun text-left">
-               <ul class="list-inline st-menu hidden-xs">
-                  <li><a href="/shop/home">Home</a></li>
-                  <li><a href="indexf110.html?route=product/special">special</a></li>
-                  <li><a href="index7cb2.html?route=information/sitemap">Site Map</a></li>
-                  <li><a href="index71ba.html?route=account/return/add">return</a></li>
-                  <li><a href="indexd773.html?route=product/manufacturer">brand</a></li>
-                  <li><a href="indexc295.html?route=information/blogger/blogs">blog</a></li>
-                  <li><a href="/shop/contact">contact</a></li>
-               </ul>
-            </div>
-            <div id="top-links" class="col-lg-2 col-md-2 col-sm-8 col-xs-12 text-right hidden-sm hidden-xs">
-               <svg width="25px" height="25px">
-                  <use xlink:href="#sale"></use>
-               </svg>
-               <a href="indexf110.html?route=product/special"> special offer! </a>
-            </div>
-         </div>
-      </div>
-   </div>
 </header>

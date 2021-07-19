@@ -1064,293 +1064,131 @@
                      </div>
                   </div>
                </div>
+               
                <div class="homemenu">
                   <div class="container">
                      <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-xs-12 head-menu text-left">
-                           <div class="menurel">
-                              <nav id="menu" class="navbar">
-                                 <div class="navbar-header">
-                                    <button type="button" class="btn btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-                                 </div>
-                                 <div id="pt_vegamenu" class="title-menu wr-left-menu hidden-xs">
-                                    <div id="wr-menu-icon">
-                                       <div class="wr-menu" data-toggle="collapse" data-target="#under-menu">
-                                          <button class="btn-navbar navbar-toggle" type="button" data-toggle="collapse">
-                                             <div class="ico-menu">
-                                                <div class="bar"></div>
-                                                <div class="bar"></div>
-                                                <div class="bar"></div>
-                                             </div>
-                                          </button>
-                                          <span class="cate">All Categories</span>
-                                          <i class="fa fa-angle-down"></i>
+                           <!--Start Category -->
+                              <div class="menurel">
+                                 <nav id="menu" class="navbar">
+                                    <div class="navbar-header">
+                                       <button type="button" class="btn btn-navbar navbar-toggle" onclick="openNav()" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                                    </div>
+                                    <div id="pt_vegamenu" class="title-menu wr-left-menu hidden-xs">
+                                       <div id="wr-menu-icon">
+                                          <div class="wr-menu" data-toggle="collapse" data-target="#under-menu">
+                                             <button class="btn-navbar navbar-toggle" type="button" data-toggle="collapse">
+                                                <div class="ico-menu">
+                                                   <div class="bar"></div>
+                                                   <div class="bar"></div>
+                                                   <div class="bar"></div>
+                                                </div>
+                                             </button>
+                                             <span class="cate">All Categories</span>
+                                             <i class="fa fa-angle-down"></i>
+                                          </div>
                                        </div>
                                     </div>
-                                 </div>
-                                 <div id="mySidenav" class="sidenav">
-                                    <div id="under-menu" class="collapse">
-                                       <div class="close-nav hidden-sm hidden-md hidden-lg hidden-xl">
-                                          <span class="categories">Category</span>
-                                          <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fa fa-close"></i></a>
-                                       </div>
-                                       <div class="collapse navbar-collapse navbar-ex1-collapse">
-                                          <ul class="nav navbar-nav site-nav">
-                                             
-
-                                             <li class="moremenu">
-                                                <a href="index8e1e.html?route=product/category&amp;path=31" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/12.jpg" alt="Scanners">
+                                    <div id="mySidenav" class="sidenav">
+                                       <div id="under-menu" class="collapse">
+                                          <div class="close-nav hidden-sm hidden-md hidden-lg hidden-xl">
+                                             <span class="categories">Category</span>
+                                             <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()"><i class="fa fa-close"></i></a>
+                                          </div>
+                                          <div class="collapse navbar-collapse navbar-ex1-collapse">
+                                             <ul class="nav navbar-nav site-nav">
+                                                <!--Start Category View-->
+                                                {% for category in view_category%} 
+                                                <li class="moremenu">
+                                                   <a href="/shop/single_product" class="bmenu">
+                                                      <div class="thumb_img pull-left">
+                                                         <img src="/media/{{category.category_image}}" alt="{{category.category_name}}">
+                                                      </div>
+                                                      {{category.category_name}}
+                                                   </a>
+                                                </li>
+                                                {% endfor %}
+                                                <!--End Category View-->
+                                                <li class="dropdown moremenu">
+                                                   <a href="index98dc.html?route=product/category&amp;path=20" class="dropdown-toggle header-menu" data-toggle="dropdown">
+                                                      <div class="thumb_img pull-left">
+                                                         <img src="/static/image/catalog/category/14.jpg" alt="Desktops">
+                                                      </div>
+                                                      Desktops
+                                                      <i class="fa fa-angle-down pull-right enangle"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu">
+                                                      <div class="dropdown-inner">
+                                                         <ul class="list-unstyled">
+                                                            <!--3rd level-->
+                                                            <li class="dropdown-submenu">
+                                                               <a href="indexd9fe.html?route=product/category&amp;path=20_26" class="submenu-title"> PC (0) </a>
+                                                               <ul class="list-unstyled grand-child">
+                                                                  <li> <a href="index8b5f.html?route=product/category&amp;path=26_43"> test 11 (0) </a> </li>
+                                                                  <li> <a href="indexabcf.html?route=product/category&amp;path=26_47"> test 15 (0) </a> </li>
+                                                               </ul>
+                                                            </li>
+                                                            <!--3rd level over-->
+                                                         </ul>
+                                                         <ul class="list-unstyled">
+                                                            <!--3rd level-->
+                                                            <li class="dropdown-submenu">
+                                                               <a href="indexf345.html?route=product/category&amp;path=20_27" class="submenu-title"> Mac (0) </a>
+                                                               <ul class="list-unstyled grand-child">
+                                                                  <li> <a href="indexa508.html?route=product/category&amp;path=27_44"> test 12 (0) </a> </li>
+                                                                  <li> <a href="index46c1.html?route=product/category&amp;path=27_48"> test 16 (0) </a> </li>
+                                                               </ul>
+                                                            </li>
+                                                            <!--3rd level over-->
+                                                         </ul>
+                                                         <a href="index98dc.html?route=product/category&amp;path=20" class="see-all visible-xs">Show All Desktops</a> 
+                                                      </div>
                                                    </div>
-                                                   Scanners
-                                                </a>
-                                             </li>
-
-                                             <li class="dropdown moremenu">
-                                                <a href="index98dc.html?route=product/category&amp;path=20" class="dropdown-toggle header-menu" data-toggle="dropdown">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/14.jpg" alt="Desktops">
-                                                   </div>
-                                                   Desktops
-                                                   <i class="fa fa-angle-down pull-right enangle"></i>
-                                                </a>
-                                                <div class="dropdown-menu">
-                                                   <div class="dropdown-inner">
-                                                      <ul class="list-unstyled">
-                                                         <!--3rd level-->
-                                                         <li class="dropdown-submenu">
-                                                            <a href="indexd9fe.html?route=product/category&amp;path=20_26" class="submenu-title"> PC (0) </a>
-                                                            <ul class="list-unstyled grand-child">
-                                                               <li> <a href="index8b5f.html?route=product/category&amp;path=26_43"> test 11 (0) </a> </li>
-                                                               <li> <a href="indexabcf.html?route=product/category&amp;path=26_47"> test 15 (0) </a> </li>
-                                                            </ul>
-                                                         </li>
-                                                         <!--3rd level over-->
-                                                      </ul>
-                                                      <ul class="list-unstyled">
-                                                         <!--3rd level-->
-                                                         <li class="dropdown-submenu">
-                                                            <a href="indexf345.html?route=product/category&amp;path=20_27" class="submenu-title"> Mac (0) </a>
-                                                            <ul class="list-unstyled grand-child">
-                                                               <li> <a href="indexa508.html?route=product/category&amp;path=27_44"> test 12 (0) </a> </li>
-                                                               <li> <a href="index46c1.html?route=product/category&amp;path=27_48"> test 16 (0) </a> </li>
-                                                            </ul>
-                                                         </li>
-                                                         <!--3rd level over-->
-                                                      </ul>
-                                                      <a href="index98dc.html?route=product/category&amp;path=20" class="see-all visible-xs">Show All Desktops</a> 
-                                                   </div>
-                                                </div>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index8e1e.html?route=product/category&amp;path=31" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/12.jpg" alt="Scanners">
-                                                   </div>
-                                                   Scanners
-                                                </a>
-                                             </li>
-                                             <li class="dropdown moremenu">
-                                                <a href="index8122.html?route=product/category&amp;path=34" class="dropdown-toggle header-menu" data-toggle="dropdown">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/10.jpg" alt="MP3 Players">
-                                                   </div>
-                                                   MP3 Players
-                                                   <i class="fa fa-angle-down pull-right enangle"></i>
-                                                </a>
-                                                <div class="dropdown-menu">
-                                                   <div class="dropdown-inner">
-                                                      <ul class="list-unstyled">
-                                                         <!--3rd level-->
-                                                         <li class="dropdown-submenu">
-                                                            <a href="indexd86f.html?route=product/category&amp;path=34_38" class="submenu-title"> Mice (0) </a>
-                                                            <ul class="list-unstyled grand-child">
-                                                               <li> <a href="index7d70.html?route=product/category&amp;path=38_56"> test 24 (0) </a> </li>
-                                                               <li> <a href="indexf882.html?route=product/category&amp;path=38_42"> test 9 (0) </a> </li>
-                                                            </ul>
-                                                         </li>
-                                                         <!--3rd level over-->
-                                                      </ul>
-                                                      <ul class="list-unstyled">
-                                                         <!--3rd level-->
-                                                         <li class="dropdown-submenu">
-                                                            <a href="index7fe6.html?route=product/category&amp;path=34_41" class="submenu-title"> Notebooks (0) </a>
-                                                            <ul class="list-unstyled grand-child">
-                                                               <li> <a href="index44ec.html?route=product/category&amp;path=41_51"> test 19 (0) </a> </li>
-                                                               <li> <a href="indexc0a0.html?route=product/category&amp;path=41_39"> test 6 (0) </a> </li>
-                                                            </ul>
-                                                         </li>
-                                                         <!--3rd level over-->
-                                                      </ul>
-                                                      <a href="index8122.html?route=product/category&amp;path=34" class="see-all visible-xs">Show All MP3 Players</a> 
-                                                   </div>
-                                                </div>
-                                             </li>
-                                             <li class="dropdown moremenu">
-                                                <a href="index7fa3.html?route=product/category&amp;path=18" class="dropdown-toggle header-menu" data-toggle="dropdown">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/15.jpg" alt="Laptops">
-                                                   </div>
-                                                   Laptops
-                                                   <i class="fa fa-angle-down pull-right enangle"></i>
-                                                </a>
-                                                <div class="dropdown-menu">
-                                                   <div class="dropdown-inner">
-                                                      <ul class="list-unstyled">
-                                                         <!--3rd level-->
-                                                         <li class="dropdown-submenu">
-                                                            <a href="index9f41.html?route=product/category&amp;path=18_46" class="submenu-title"> Macs (0) </a>
-                                                            <ul class="list-unstyled grand-child">
-                                                               <li> <a href="index7c70.html?route=product/category&amp;path=46_50"> test 18 (0) </a> </li>
-                                                               <li> <a href="indexc34f.html?route=product/category&amp;path=46_52"> test 20 (0) </a> </li>
-                                                            </ul>
-                                                         </li>
-                                                         <!--3rd level over-->
-                                                      </ul>
-                                                      <ul class="list-unstyled">
-                                                         <!--3rd level-->
-                                                         <li class="dropdown-submenu">
-                                                            <a href="index8470.html?route=product/category&amp;path=18_45" class="submenu-title"> Windows (0) </a>
-                                                            <ul class="list-unstyled grand-child">
-                                                               <li> <a href="index3528.html?route=product/category&amp;path=45_49"> test 17 (0) </a> </li>
-                                                               <li> <a href="index605f.html?route=product/category&amp;path=45_54"> test 22 (0) </a> </li>
-                                                            </ul>
-                                                         </li>
-                                                         <!--3rd level over-->
-                                                      </ul>
-                                                      <a href="index7fa3.html?route=product/category&amp;path=18" class="see-all visible-xs">Show All Laptops</a> 
-                                                   </div>
-                                                </div>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index70a9.html?route=product/category&amp;path=57" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/1.jpg" alt="Tablets">
-                                                   </div>
-                                                   Tablets
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="indexb152.html?route=product/category&amp;path=17" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/2.jpg" alt="Software">
-                                                   </div>
-                                                   Software
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="indexc957.html?route=product/category&amp;path=24" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/5.jpg" alt="Phones &amp; PDAs">
-                                                   </div>
-                                                   Phones &amp; PDAs
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index68ea.html?route=product/category&amp;path=33" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/13.jpg" alt="Cameras">
-                                                   </div>
-                                                   Cameras
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index6067.html?route=product/category&amp;path=60" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/7.jpg" alt="fashion">
-                                                   </div>
-                                                   fashion
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index8cc5.html?route=product/category&amp;path=29" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/3.jpg" alt="Trackballs">
-                                                   </div>
-                                                   Trackballs
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index103d.html?route=product/category&amp;path=32" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/8.jpg" alt="Web Cameras">
-                                                   </div>
-                                                   Web Cameras
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index73b3.html?route=product/category&amp;path=59" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/9.jpg" alt="fruits">
-                                                   </div>
-                                                   fruits
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index1647.html?route=product/category&amp;path=25" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/6.jpg" alt="Components">
-                                                   </div>
-                                                   Components
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="index13cb.html?route=product/category&amp;path=28" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/4.jpg" alt="Monitors">
-                                                   </div>
-                                                   Monitors
-                                                </a>
-                                             </li>
-                                             <li class="moremenu">
-                                                <a href="indexc262.html?route=product/category&amp;path=30" class="bmenu">
-                                                   <div class="thumb_img pull-left">
-                                                      <img src="/static/image/catalog/category/11.jpg" alt="Printers">
-                                                   </div>
-                                                   Printers
-                                                </a>
-                                             </li>
-
-                                          </ul>
+                                                </li>
+                                             </ul>
+                                          </div>
                                        </div>
                                     </div>
-                                 </div>
-                              </nav>
+                                 </nav>
+                              </div>
+
+                              <!-- Category script-->
+                                 <script type="text/javascript">
+                                    function headermenu() {
+                                       if (jQuery(window).width() < 768)
+                                       {
+                                          jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle","dropdown");        
+                                       }
+                                       else
+                                       {
+                                          jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle",""); 
+                                       }
+                                    }
+                                    $(document).ready(function(){headermenu();});
+                                    jQuery(window).resize(function() {headermenu();});
+                                    jQuery(window).scroll(function() {headermenu();});
+                                 </script>
+                           <!--End Category -->
+                        </div>
+
+                        <!--Start Menu -->
+                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs manun text-left">
+                              <ul class="list-inline st-menu hidden-xs">
+                                 <li><a href="/shop/home">Home</a></li>
+                                 <li><a href="index71ba.html?route=account/return/add">return</a></li>
+                                 <li><a href="/blog/">blog</a></li>
+                                 <li><a href="/shop/contact">contact</a></li>
+                              </ul>
                            </div>
-                           <script type="text/javascript">
-                              function headermenu() {
-                                  if (jQuery(window).width() < 768)
-                                  {
-                                      jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle","dropdown");        
-                                  }
-                                  else
-                                  {
-                                      jQuery('ul.nav li.dropdown a.header-menu').attr("data-toggle",""); 
-                                  }
-                              }
-                              $(document).ready(function(){headermenu();});
-                              jQuery(window).resize(function() {headermenu();});
-                              jQuery(window).scroll(function() {headermenu();});
-                           </script>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs manun text-left">
-                           <ul class="list-inline st-menu hidden-xs">
-                              <li><a href="/shop/home">Home</a></li>
-                              <li><a href="indexf110.html?route=product/special">special</a></li>
-                              <li><a href="index7cb2.html?route=information/sitemap">Site Map</a></li>
-                              <li><a href="index71ba.html?route=account/return/add">return</a></li>
-                              <li><a href="indexd773.html?route=product/manufacturer">brand</a></li>
-                              <li><a href="indexc295.html?route=information/blogger/blogs">blog</a></li>
-                              <li><a href="/shop/contact">contact</a></li>
-                           </ul>
-                        </div>
-                        <div id="top-links" class="col-lg-2 col-md-2 col-sm-8 col-xs-12 text-right hidden-sm hidden-xs">
-                           <svg width="25px" height="25px">
-                              <use xlink:href="#sale"></use>
-                           </svg>
-                           <a href="indexf110.html?route=product/special"> special offer! </a>
-                        </div>
+
+                           {% comment %} <div id="top-links" class="col-lg-2 col-md-2 col-sm-8 col-xs-12 text-right hidden-sm hidden-xs">
+                              <svg width="25px" height="25px">
+                                 <use xlink:href="#sale"></use>
+                              </svg>
+                              <a href="indexf110.html?route=product/special"> special offer! </a>
+                           </div> {% endcomment %}
+                        <!--Start Menu -->
                      </div>
                   </div>
                </div>
@@ -1359,52 +1197,48 @@
             <div id="common-home" class="container-fluid">
                <div class="row">
                   <div id="content" class="col-xs-12">
-                     <div class="container">
-                        <div class="s-panel row">
-                           <div class="col-lg-3 col-md-3 col-xs-12 silder_leftwidth"></div>
-                           <div class="col-lg-9 col-md-9 col-xs-12 silder_rightwidth">
-                              <div class="loader wrloader"></div>
-                              <div id="slideshow0" class="slideshow">
+                  
+                     <!--Start Slider -->
+                        <div class="container">
+                           <div class="s-panel row">
+                              <div class="col-lg-3 col-md-3 col-xs-12 silder_leftwidth"></div>
+                              <div class="col-lg-9 col-md-9 col-xs-12 silder_rightwidth">
+                                 <div class="loader wrloader"></div>
+                                 <div id="slideshow0" class="slideshow">
+
+                                 {% for slider in view_slider %}
                                  <div>
-                                    <a href="#"><img src="/static/image/cache/catalog/slider/s1-1230x555.jpg" alt="iPhone 6" class="img-responsive center-block" /></a>            
-                                    <div class="col-xs-6">
-                                       <div class="slidertext">
-                                          <div class="slideff">
-                                             <h3>SPRING - SUMMER 2021</h3>
-                                             <h1>New Sports Shoes</h1>
-                                             <p>Sed elit quam, iaculis sd semper sit amet udin vitae nibh. at magna akal semperFusce vitae nibh ed elit quam, iacjfkulis sed semper sit amet udin vitae nibh. at magna semperFusce or at magna akal semperFusce.</p>
-                                             <a href="#" class="btn btn-primary">Shop now</a>
+                                       <a href="/media/{{slider.slider_image}}" target="_blank"><img src="/media/{{slider.slider_image}}" alt="{{slider.slider_name}}" class="img-responsive center-block" /></a>            
+                                       <div class="col-xs-6">
+                                          <div class="slidertext">
+                                             <div class="slideff">
+                                                {% comment %} <h3>SUMMER 2021</h3> {% endcomment %}
+                                                <h1>{{slider.title}}</h1>
+                                                <p>{{slider.desc}}</p>
+                                                <a href="#" class="btn btn-primary">Shop now</a>
+                                             </div>
                                           </div>
                                        </div>
                                     </div>
-                                 </div>
-                                 <div>
-                                    <a href="#"><img src="/static/image/cache/catalog/slider/S2-1230x555.jpg" alt="MacBookAir" class="img-responsive center-block" /></a>            
-                                    <div class="col-xs-6">
-                                       <div class="slidertext">
-                                          <div class="slideff">
-                                             <h3>SPRING - SUMMER 2021</h3>
-                                             <h1>New Arrivals</h1>
-                                             <p>Sed elit quam, iaculis sd semper sit amet udin vitae nibh. at magna akal semperFusce vitae nibh ed elit quam, iacjfkulis sed semper sit amet udin vitae nibh. at magna semperFusce or at magna akal semperFusce.</p>
-                                             <a href="#" class="btn btn-primary">Shop now</a>
-                                          </div>
-                                       </div>
-                                    </div>
+                                 {% endfor %}
+      
                                  </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <script type="text/javascript">
-                        $('.slideshow').slick({
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        arrows: false,
-                        dots: true,
-                        autoplaySpeed: 5000,
-                        });
-                     </script>
+                        <!-- Slider script-->
+                        <script type="text/javascript">
+                           $('.slideshow').slick({
+                           slidesToShow: 1,
+                           slidesToScroll: 1,
+                           autoplay: true,
+                           arrows: false,
+                           dots: true,
+                           autoplaySpeed: 5000,
+                           });
+                        </script>
+                     <!--End Slider -->
+
                      <div>
                         <div class="servi_bg">
                            <div class="container martb">
@@ -1551,7 +1385,7 @@
                         <div class="row imgbnr rless">
                            <div class="col-sm-6 col-xs-12 bann cless">
                               <div class="beffect">
-                                 <a href="#">
+                                 <a href="/shop/single_product/">
                                  <img src="/static/image/cache/catalog/img-banner/b1-750x300.jpg" alt="banner1" class="img-responsive center-block" />
                                  </a>
                               </div>
@@ -1565,6 +1399,149 @@
                            </div>
                         </div>
                      </div>
+
+                     <div class="container spepro martb">
+
+                        <!--Slideshow starts here -->
+                        {% for product, range, nSlides in allProds %}
+                        {% comment %} <h5 class="my-4">Flash Sale On {{product.0.category}} - Recommended Items</h5> {% endcomment %}
+                        <div class="borbutt">
+                                 <h1 class="heading text-left"><span>{{product.0.category}}</span></h1>
+                        </div>
+                        <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
+                           <ul class="carousel-indicators">
+                              <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+
+                              {% for i in range %}
+                              <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                              {% endfor %}
+                           </ul>
+
+
+                           <div class="container carousel-inner no-padding">
+
+                              <div class="carousel-item active">
+
+
+                              {% for i in product %}
+                              <div class="col-xs-3 col-sm-3 col-md-3">
+                                 <div class="card align-items-center mx-2" style="width: 18rem;">
+                                    <div class="image">
+                                       <a href=""><img src="/media/{{i.imag}}" alt="{{i.product_name}}" title="{{i.product_name}}" class="img-responsive center-block" /></a>
+                                    </div>
+                                    <div class="card-body">
+                                    {% comment %} <h5 class="card-title" id="namepr{{i.product_id}}">{{i.product_name}}</h5> {% endcomment %}
+                                    <h4 class="protitle"><a href="">{{i.product_name}}</a></h4>
+                                    <div class="price">
+                                       <span class="price-new">{{i.price}}</span>
+                                    </div>
+                                    {% comment %} <p class="card-text">{{i.desc|slice:23}}...</p>
+                                    <h6 class="card-title">Price : ₹ <span id="pricepr{{i.product_id}}">{{ i.price }}</span></h6> {% endcomment %}
+                                    {% comment %} <span id="divpr{{ i.product_id }}" class="divpr">
+                                       <button id="pr{{i.product_id}}" class="btn btn-primary cart">Add To Cart</button>
+                                    </span>
+                                    <a href="/shop/products/{{i.product_id}}">
+                                       <button id="qv{{i.product_id}}" class="btn btn-primary cart">Quick View</button>
+                                    </a> {% endcomment %}
+
+                                    <span id="divpr{{ i.product_id }}" class="divpr">
+                                       <button id="pr{{i.product_id}}" class="btn btn-primary cart">Add To Cart</button>
+                                       <a class="mx-2" href="/shop/products/{{i.product_id}}">
+                                       <button id="qv{{i.product_id}}" class="btn btn-primary cart">Quick View</button>
+                                    </a>
+                                    </span>
+                                    
+
+                                    </div>
+                                 </div>
+                              </div>
+                              {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                              </div>
+                              <div class="carousel-item">
+                              {% endif %}
+
+                              {% endfor %}
+                              </div>
+
+
+
+                           </div>
+                        </div>
+
+                        <!-- left and right controls for the slide -->
+                        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+                           <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+                           <span class="carousel-control-next-icon"></span>
+                        </a>
+                        {% endfor %}
+
+                     </div> 
+
+                     {% for product, range, nSlides in allProds %}
+                        <div class="container spepro martb">
+                              <div class="borbutt">
+                                 <h1 class="heading text-left"><span>{{product.0.category}}</span></h1>
+                              </div>
+
+                              {% for i in product %}
+                                 <div class="row rless">
+                                    <div class="col-xs-12 specpr">
+                                       <div id="special" class="owl-theme owl-carousel">
+                                          <div class="product-layout col-xs-12 cless">
+                                             <div class="product-thumb">
+                                                <div class="image">
+                                                   <a href=""><img src="/media/{{i.imag}}" alt="{{i.product_name}}" title="{{i.product_name}}" class="img-responsive center-block" /></a>
+                                                </div>
+                                                <div class="caption text-center">
+                                                   <h4 class="protitle"><a href="index52a0.html?route=product/product&amp;product_id=51">{{i.product_name}}</a></h4>
+                                                   <div class="price">
+                                                      <span class="price-new">{{i.price}}</span>
+                                                   </div>
+                                                   <div class="button-group text-center">
+                                                      <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('51');">
+                                                         <svg>
+                                                            <use xlink:href="#pcart"></use>
+                                                         </svg>
+                                                      </button>
+                                                      <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
+                                                      <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('51');">
+                                                         <svg>
+                                                            <use xlink:href="#heart" />
+                                                         </svg>
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              {% endfor %}
+                        </div>
+                     {% endfor %}
+                     
+                     <script type="text/javascript">
+                        (function($){
+                        $("#special").owlCarousel({
+                        itemsCustom : [
+                        [0, 2],
+                        [400, 2],
+                        [600, 3],
+                        [700, 3],
+                        [992, 3],
+                        [1200, 4],
+                        [1410, 5]
+                        ],
+                           // autoPlay: 1000,
+                           navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                           navigation : true,
+                           pagination:false
+                        });
+                        }(jQuery));
+                     </script>
+
                      <div class="tab-content container protabcont martb">
                         <div class="tab-head">
                            <div class="heading pull-left text-left">
@@ -1579,17 +1556,19 @@
                         <div class="tab-pane active" id="featurep">
                            <div class="row rless">
                               <div id="feature" class="owl-theme owl-carousel">
+                                    
+                              
                                  <div class="multi-row">
                                     <div class="product-layout col-xs-12 cless">
                                        <div class="product-thumb transition">
                                           <div class="image">
                                              <a href="index75be.html?route=product/product&amp;product_id=50"><img src="/static/image/cache/catalog/product/26-315x315.jpg" alt="Duis vel elementum neque Donec volutpat" title="Duis vel elementum neque Donec volutpat" class="img-responsive center-block" /></a>
-                                             <a href="index75be.html?route=product/product&amp;product_id=50"><img src="/static/image/cache/catalog/product/25-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                             <span class="sale">53%</span>
+                                             {% comment %} <a href="index75be.html?route=product/product&amp;product_id=50"><img src="/static/image/cache/catalog/product/25-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a> {% endcomment %}
+                                             {% comment %} <span class="sale">53%</span> {% endcomment %}
                                              <!-- <span class="reduce-price">reduced price</span> -->
                                           </div>
                                           <div class="caption text-center">
-                                             <div class="rating">
+                                             {% comment %} <div class="rating">
                                                 <span class="fa fa-stack">
                                                 <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
                                                 </span>
@@ -1605,10 +1584,10 @@
                                                 <span class="fa fa-stack">
                                                 <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
                                                 </span>
-                                             </div>
+                                             </div> {% endcomment %}
                                              <h4 class="protitle"><a href="index75be.html?route=product/product&amp;product_id=50">Duis vel elementum neque Donec volutpat</a></h4>
                                              <div class="price">
-                                                <span class="price-new">$422.00</span> <span class="price-old">$904.40</span>
+                                                <span class="price-new">$422.00</span>
                                              </div>
                                              <div class="button-group text-center">
                                                 <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('50');">
@@ -1622,12 +1601,12 @@
                                                       <use xlink:href="#heart" />
                                                    </svg>
                                                 </button>
-                                                <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('50');">
+                                                {% comment %} <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('50');">
                                                    <svg>
                                                       <use xlink:href="#compare"/>
                                                    </svg>
                                                 </button>
-                                                <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
+                                                <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div> {% endcomment %}
                                              </div>
                                           </div>
                                        </div>
@@ -1672,6 +1651,7 @@
                                        </div>
                                     </div>
                                  </div>
+
                                  <div class="multi-row">
                                     <div class="product-layout col-xs-12 cless">
                                        <div class="product-thumb transition">
@@ -3809,502 +3789,8 @@
                            });
                         });
                      </script>
-                     <div class="container spepro martb">
-                        <div class="borbutt">
-                           <h1 class="heading text-left"><span>Special Products</span></h1>
-                        </div>
-                        <div class="row rless">
-                           <div class="col-xs-12 specpr">
-                              <div id="special" class="owl-theme owl-carousel">
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image">
-                                          <a href="index52a0.html?route=product/product&amp;product_id=51"><img src="/static/image/cache/catalog/product/7-315x315.jpg" alt="Analog Digital Smart Watch" title="Analog Digital Smart Watch" class="img-responsive center-block" /></a>
-                                          <a href="index52a0.html?route=product/product&amp;product_id=51"><img src="/static/image/cache/catalog/product/8-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                          <span class="sale">18%</span>
-                                          <!-- <span class="reduce-price">reduced price</span> -->
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                          </div>
-                                          <h4 class="protitle"><a href="index52a0.html?route=product/product&amp;product_id=51">Analog Digital Smart Watch</a></h4>
-                                          <div class="price">
-                                             <span class="price-new">$986.00</span> <span class="price-old">$1,200.80</span>
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('51');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('51');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('51');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image">
-                                          <a href="indexbb02.html?route=product/product&amp;product_id=42"><img src="/static/image/cache/catalog/product/5-315x315.jpg" alt="Apple Cinema 30&quot;" title="Apple Cinema 30&quot;" class="img-responsive center-block" /></a>
-                                          <a href="indexbb02.html?route=product/product&amp;product_id=42"><img src="/static/image/cache/catalog/product/6-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                          <span class="sale">42%</span>
-                                          <!-- <span class="reduce-price">reduced price</span> -->
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                          </div>
-                                          <h4 class="protitle"><a href="indexbb02.html?route=product/product&amp;product_id=42">Apple Cinema 30&quot;</a></h4>
-                                          <div class="price">
-                                             <span class="price-new">$350.00</span> <span class="price-old">$602.00</span>
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('42');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('42');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('42');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image">
-                                          <a href="index75be.html?route=product/product&amp;product_id=50"><img src="/static/image/cache/catalog/product/26-315x315.jpg" alt="Duis vel elementum neque Donec volutpat" title="Duis vel elementum neque Donec volutpat" class="img-responsive center-block" /></a>
-                                          <a href="index75be.html?route=product/product&amp;product_id=50"><img src="/static/image/cache/catalog/product/25-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                          <span class="sale">53%</span>
-                                          <!-- <span class="reduce-price">reduced price</span> -->
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                             <span class="fa fa-stack">
-                                             <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                             </span>
-                                          </div>
-                                          <h4 class="protitle"><a href="index75be.html?route=product/product&amp;product_id=50">Duis vel elementum neque Donec volutpat</a></h4>
-                                          <div class="price">
-                                             <span class="price-new">$422.00</span> <span class="price-old">$904.40</span>
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('50');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('50');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('50');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image"><a href="indexcae8.html?route=product/product&amp;product_id=41"><img src="/static/image/cache/catalog/product/21-315x315.jpg" alt="iMac" title="iMac" class="img-responsive center-block" /></a>
-                                          <a href="indexcae8.html?route=product/product&amp;product_id=41"><img src="/static/image/cache/catalog/product/22-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="indexcae8.html?route=product/product&amp;product_id=41">iMac</a></h4>
-                                          <div class="price">
-                                             $122.00
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('41');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('41');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('41');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image"><a href="index9144.html?route=product/product&amp;product_id=40"><img src="/static/image/cache/catalog/product/18-315x315.jpg" alt="iPhone" title="iPhone" class="img-responsive center-block" /></a>
-                                          <a href="index9144.html?route=product/product&amp;product_id=40"><img src="/static/image/cache/catalog/product/17-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="index9144.html?route=product/product&amp;product_id=40">iPhone</a></h4>
-                                          <div class="price">
-                                             $123.20
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('40');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('40');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('40');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image"><a href="indexb77e.html?route=product/product&amp;product_id=48"><img src="/static/image/cache/catalog/product/15-315x315.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive center-block" /></a>
-                                          <a href="indexb77e.html?route=product/product&amp;product_id=48"><img src="/static/image/cache/catalog/product/16-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="indexb77e.html?route=product/product&amp;product_id=48">iPod Classic</a></h4>
-                                          <div class="price">
-                                             $122.00
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('48');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('48');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('48');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image"><a href="index5e0b.html?route=product/product&amp;product_id=36"><img src="/static/image/cache/catalog/product/11-315x315.jpg" alt="iPod Nano" title="iPod Nano" class="img-responsive center-block" /></a>
-                                          <a href="index5e0b.html?route=product/product&amp;product_id=36"><img src="/static/image/cache/catalog/product/12-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="index5e0b.html?route=product/product&amp;product_id=36">iPod Nano</a></h4>
-                                          <div class="price">
-                                             $122.00
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('36');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('36');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('36');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image"><a href="indexc21e.html?route=product/product&amp;product_id=34"><img src="/static/image/cache/catalog/product/10-315x315.jpg" alt="iPod Shuffle" title="iPod Shuffle" class="img-responsive center-block" /></a>
-                                          <a href="indexc21e.html?route=product/product&amp;product_id=34"><img src="/static/image/cache/catalog/product/9-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="indexc21e.html?route=product/product&amp;product_id=34">iPod Shuffle</a></h4>
-                                          <div class="price">
-                                             $122.00
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('34');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('34');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('34');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image"><a href="indexa17e.html?route=product/product&amp;product_id=32"><img src="/static/image/cache/catalog/product/28-315x315.jpg" alt="iPod Touch" title="iPod Touch" class="img-responsive center-block" /></a>
-                                          <a href="indexa17e.html?route=product/product&amp;product_id=32"><img src="/static/image/cache/catalog/product/27-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="indexa17e.html?route=product/product&amp;product_id=32">iPod Touch</a></h4>
-                                          <div class="price">
-                                             $122.00
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('32');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('32');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('32');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image">
-                                          <a href="indexf073.html?route=product/product&amp;product_id=30"><img src="/static/image/cache/catalog/product/1-315x315.jpg" alt="Vistra Mixer Grinder" title="Vistra Mixer Grinder" class="img-responsive center-block" /></a>
-                                          <a href="indexf073.html?route=product/product&amp;product_id=30"><img src="/static/image/cache/catalog/product/2-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                          <span class="sale">38%</span>
-                                          <!-- <span class="reduce-price">reduced price</span> -->
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="indexf073.html?route=product/product&amp;product_id=30">Vistra Mixer Grinder</a></h4>
-                                          <div class="price">
-                                             <span class="price-new">$662.00</span> <span class="price-old">$1,070.00</span>
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('30');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('30');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('30');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-layout col-xs-12 cless">
-                                    <div class="product-thumb">
-                                       <div class="image">
-                                          <a href="index0f47.html?route=product/product&amp;product_id=29"><img src="/static/image/cache/catalog/product/13-315x315.jpg" alt="women solid Crop-Top" title="women solid Crop-Top" class="img-responsive center-block" /></a>
-                                          <a href="index0f47.html?route=product/product&amp;product_id=29"><img src="/static/image/cache/catalog/product/14-315x315.jpg" class="img-responsive second-img" alt="hover image"/></a>
-                                          <span class="sale">21%</span>
-                                          <!-- <span class="reduce-price">reduced price</span> -->
-                                       </div>
-                                       <div class="caption text-center">
-                                          <div class="rating">                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                          </div>
-                                          <h4 class="protitle"><a href="index0f47.html?route=product/product&amp;product_id=29">women solid Crop-Top</a></h4>
-                                          <div class="price">
-                                             <span class="price-new">$362.00</span> <span class="price-old">$457.99</span>
-                                          </div>
-                                          <div class="button-group text-center">
-                                             <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('29');">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                             <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                             <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('29');">
-                                                <svg>
-                                                   <use xlink:href="#heart" />
-                                                </svg>
-                                             </button>
-                                             <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('29');">
-                                                <svg>
-                                                   <use xlink:href="#compare"/>
-                                                </svg>
-                                             </button>
-                                             <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <script type="text/javascript">
-                        (function($){
-                        $("#special").owlCarousel({
-                        itemsCustom : [
-                        [0, 2],
-                        [400, 2],
-                        [600, 3],
-                        [700, 3],
-                        [992, 3],
-                        [1200, 4],
-                        [1410, 5]
-                        ],
-                          // autoPlay: 1000,
-                           navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-                          navigation : true,
-                          pagination:false
-                        });
-                        }(jQuery));
-                     </script>
+
+                     
                      <!-- <div class="onsl"> -->
                      <div class="container martb onsl-onsl">
                         <div class="row">
@@ -7213,257 +6699,6 @@
                         });
                         });
                         
-                     </script>
-                     <div class="blog_webi martb container">
-                        <div class="borbutt">
-                           <h1 class="heading text-left"><span>Latest News</span></h1>
-                        </div>
-                        <div class="box-content">
-                           <div class="box-product row rless">
-                              <div id="blog" class="owl-carousel owl-theme">
-                                 <div class="product-block col-xs-12 cless">
-                                    <div class="blogshadow">
-                                       <div class="blog-left">
-                                          <div class="webi-blog-image">
-                                             <img src="/static/image/cache/catalog/blog/1-1170x645.jpg" alt="Latest News" title="Latest News" class="img-responsive" />
-                                             <div class="blog-post-image-hover"> </div>
-                                             <div class="webi_post_hover">
-                                                <div class="blog-ic">
-                                                   <a class="icon zoom" title="Click to view Full Image " href="image/cache/catalog/blog/1-1170x645.jpg" data-lightbox="example-set"><i class="fa fa-search"></i></a>
-                                                   <a class="icon readmore_link" title="all blog" href="indexc295.html?route=information/blogger/blogs"><i class="fa fa-link"></i></a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="blog-right text-left">
-                                          <div class="bs">
-                                             <h4><a href="indexed5d.html?route=information/blogger&amp;blogger_id=5">Nam aliquet urna ac nunc varius eleifend Aliquam erat volutpat</a></h4>
-                                             <p>Curabitur vitae consequat risus. Nam aliquet urna ac nunc varius 
-                                                eleifend. Aliquam erat volutpat. Integer dignissim sollicitudin purus, 
-                                                ac volutpa...
-                                             </p>
-                                             <h5>1 Comments</h5>
-                                             <div class="view-blog">
-                                                <div class="read-more">
-                                                   <a href="indexed5d.html?route=information/blogger&amp;blogger_id=5">
-                                                      read more
-                                                      <svg class="caearrow" width="12px" height="8px">
-                                                         <use xlink:href="#arrow-carright"></use>
-                                                      </svg>
-                                                   </a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-block col-xs-12 cless">
-                                    <div class="blogshadow">
-                                       <div class="blog-left">
-                                          <div class="webi-blog-image">
-                                             <img src="/static/image/cache/catalog/blog/2-1170x645.jpg" alt="Latest News" title="Latest News" class="img-responsive" />
-                                             <div class="blog-post-image-hover"> </div>
-                                             <div class="webi_post_hover">
-                                                <div class="blog-ic">
-                                                   <a class="icon zoom" title="Click to view Full Image " href="image/cache/catalog/blog/2-1170x645.jpg" data-lightbox="example-set"><i class="fa fa-search"></i></a>
-                                                   <a class="icon readmore_link" title="all blog" href="indexc295.html?route=information/blogger/blogs"><i class="fa fa-link"></i></a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="blog-right text-left">
-                                          <div class="bs">
-                                             <h4><a href="index4b1d.html?route=information/blogger&amp;blogger_id=4">Nam laoreet tellus laoreet nunc congue commodo</a></h4>
-                                             <p>eu auctor nibh venenatis vitae. Quisque facilisis quam non tellus tempor, et viverra velit ultrices.
-                                                Suspendisse vehicula, est a gravida lobortis, le...
-                                             </p>
-                                             <h5>0 Comments</h5>
-                                             <div class="view-blog">
-                                                <div class="read-more">
-                                                   <a href="index4b1d.html?route=information/blogger&amp;blogger_id=4">
-                                                      read more
-                                                      <svg class="caearrow" width="12px" height="8px">
-                                                         <use xlink:href="#arrow-carright"></use>
-                                                      </svg>
-                                                   </a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-block col-xs-12 cless">
-                                    <div class="blogshadow">
-                                       <div class="blog-left">
-                                          <div class="webi-blog-image">
-                                             <img src="/static/image/cache/catalog/blog/3-1170x645.jpg" alt="Latest News" title="Latest News" class="img-responsive" />
-                                             <div class="blog-post-image-hover"> </div>
-                                             <div class="webi_post_hover">
-                                                <div class="blog-ic">
-                                                   <a class="icon zoom" title="Click to view Full Image " href="image/cache/catalog/blog/3-1170x645.jpg" data-lightbox="example-set"><i class="fa fa-search"></i></a>
-                                                   <a class="icon readmore_link" title="all blog" href="indexc295.html?route=information/blogger/blogs"><i class="fa fa-link"></i></a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="blog-right text-left">
-                                          <div class="bs">
-                                             <h4><a href="indexaa69.html?route=information/blogger&amp;blogger_id=3">Praesent vel purus iaculis consequat ligula ac eleifend ex</a></h4>
-                                             <p>Sed ut sollicitudin arcu, vitae sollicitudin lectus. Praesent 
-                                                scelerisque orci in mauris feugiat, nec maximus augue faucibus. Sed 
-                                                lectus urna, max...
-                                             </p>
-                                             <h5>0 Comments</h5>
-                                             <div class="view-blog">
-                                                <div class="read-more">
-                                                   <a href="indexaa69.html?route=information/blogger&amp;blogger_id=3">
-                                                      read more
-                                                      <svg class="caearrow" width="12px" height="8px">
-                                                         <use xlink:href="#arrow-carright"></use>
-                                                      </svg>
-                                                   </a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-block col-xs-12 cless">
-                                    <div class="blogshadow">
-                                       <div class="blog-left">
-                                          <div class="webi-blog-image">
-                                             <img src="/static/image/cache/catalog/blog/4-1170x645.jpg" alt="Latest News" title="Latest News" class="img-responsive" />
-                                             <div class="blog-post-image-hover"> </div>
-                                             <div class="webi_post_hover">
-                                                <div class="blog-ic">
-                                                   <a class="icon zoom" title="Click to view Full Image " href="image/cache/catalog/blog/4-1170x645.jpg" data-lightbox="example-set"><i class="fa fa-search"></i></a>
-                                                   <a class="icon readmore_link" title="all blog" href="indexc295.html?route=information/blogger/blogs"><i class="fa fa-link"></i></a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="blog-right text-left">
-                                          <div class="bs">
-                                             <h4><a href="index5463.html?route=information/blogger&amp;blogger_id=2">Cras pretium tempor nisl quis rhoncus Suspendisse vehicula</a></h4>
-                                             <p>Pellentesque eget sem non diam dapibus sagittis vel sed turpis. Donec 
-                                                vulputate nisl non varius suscipit. Nulla elit libero, condimentum nec 
-                                                mauri...
-                                             </p>
-                                             <h5>0 Comments</h5>
-                                             <div class="view-blog">
-                                                <div class="read-more">
-                                                   <a href="index5463.html?route=information/blogger&amp;blogger_id=2">
-                                                      read more
-                                                      <svg class="caearrow" width="12px" height="8px">
-                                                         <use xlink:href="#arrow-carright"></use>
-                                                      </svg>
-                                                   </a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="product-block col-xs-12 cless">
-                                    <div class="blogshadow">
-                                       <div class="blog-left">
-                                          <div class="webi-blog-image">
-                                             <img src="/static/image/cache/catalog/blog/5-1170x645.jpg" alt="Latest News" title="Latest News" class="img-responsive" />
-                                             <div class="blog-post-image-hover"> </div>
-                                             <div class="webi_post_hover">
-                                                <div class="blog-ic">
-                                                   <a class="icon zoom" title="Click to view Full Image " href="image/cache/catalog/blog/5-1170x645.jpg" data-lightbox="example-set"><i class="fa fa-search"></i></a>
-                                                   <a class="icon readmore_link" title="all blog" href="indexc295.html?route=information/blogger/blogs"><i class="fa fa-link"></i></a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="blog-right text-left">
-                                          <div class="bs">
-                                             <h4><a href="index5a4b.html?route=information/blogger&amp;blogger_id=1">Quisque sit amet mi vel quam fringilla porttitor sed vitae ante</a></h4>
-                                             <p>Pellentesque faucibus eget sem eget ultrices. Nunc a sem vitae magna 
-                                                pulvinar maximus posuere sed tellus. In vehicula mi nisi. Maecenas 
-                                                faucibus s...
-                                             </p>
-                                             <h5>1 Comments</h5>
-                                             <div class="view-blog">
-                                                <div class="read-more">
-                                                   <a href="index5a4b.html?route=information/blogger&amp;blogger_id=1">
-                                                      read more
-                                                      <svg class="caearrow" width="12px" height="8px">
-                                                         <use xlink:href="#arrow-carright"></use>
-                                                      </svg>
-                                                   </a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <!--  <div class="buttons-see-all text-center">
-                           <button type="button" onclick="location='https://opencart.dostguru.com/MS13/readymart_03/index.php?route=information/blogger/blogs';" class="btn btn-primary">See all Blogs</button>
-                           </div> -->
-                     </div>
-                     <script type="text/javascript">
-                        (function($){
-                        $("#blog").owlCarousel({
-                        itemsCustom : [
-                        [0, 1],
-                        [600, 2],
-                        [768, 2],
-                        [992, 2],
-                        [1200, 3],
-                        [1410, 3]
-                        ],
-                          // autoPlay: 1000,
-                          navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-                          navigation: true,
-                          pagination:false
-                        });
-                        }(jQuery));
-                     </script>
-                     <div class="container martb">
-                        <div class="row rless logo-slider">
-                           <div id="carousel0" class="owl-carousel owl-theme">
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-9-225x150.png" alt="Travel" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-8-225x150.png" alt="Nintendo" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-7-225x150.png" alt="Starbucks" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-6-225x150.png" alt="Disney" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-5-225x150.png" alt="Dell" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-4-225x150.png" alt="Harley Davidson" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-3-225x150.png" alt="Canon" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-2-225x150.png" alt="Burger King" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-12-225x150.png" alt="Coca Cola" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-11-225x150.png" alt="Sony" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-10-225x150.png" alt="RedBull" class="img-responsive center-block" /></div>
-                              <div class="text-center col-xs-12 cless"><img src="/static/image/cache/catalog/brands/menufacture-1-225x150.png" alt="NFL" class="img-responsive center-block" /></div>
-                           </div>
-                        </div>
-                     </div>
-                     <script type="text/javascript">
-                        (function($){
-                        $("#carousel0").owlCarousel({
-                        itemsCustom : [
-                        [0, 2],
-                        [320, 2],
-                        [450, 3],
-                        [600, 4],
-                        [700, 5],
-                        [768, 5],
-                        [992, 5],
-                        [1200, 6],
-                        [1410, 8]
-                        ],
-                          autoPlay: 6000,
-                          loop: true,
-                          navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-                          navigation : false,
-                          pagination:false
-                        });
-                        }(jQuery));
                      </script>
                   </div>
                </div>
