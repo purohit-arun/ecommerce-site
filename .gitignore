@@ -1,3 +1,4 @@
 .vscode
 .idea
 shop/templates/shop/rough.html
+*.pyc
