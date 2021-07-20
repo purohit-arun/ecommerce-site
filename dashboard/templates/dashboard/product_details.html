@@ -34,12 +34,12 @@
 							<table class="table align-middle table-nowrap table-check table-striped">
 								<thead class="table-primary">
 									<tr>
-										<th style="width: 20px;" class="align-middle">
+										{% comment %} <th style="width: 20px;" class="align-middle">
 											<div class="form-check font-size-16">
 												<input class="form-check-input" type="checkbox" id="checkAll">
 												<label class="form-check-label" for="checkAll"></label>
 											</div>
-										</th>
+										</th> {% endcomment %}
 										<th class="align-middle">Sr. No</th>
 										<th class="align-middle">Category</th>
 										<th class="align-middle">Image</th>
@@ -55,21 +55,21 @@
 									{% if page_obj %}
 									{% for p in page_obj.object_list%}
 										<tr>
-											<td>
+											{% comment %} <td>
 												<div class="form-check font-size-16">
 													<input class="form-check-input" type="checkbox" id="orderidcheck01">
 													<label class="form-check-label" for="orderidcheck01"></label>
 												</div>
-											</td>
+											</td> {% endcomment %}
 											<td>{{forloop.counter}}</td>
 											<td>{{p.category}}</td>
 											<td><img src="/media/{{p.imag|default_if_none:'#'}}" alt="{{p.imag}}" style="height:50px" ></td>
 											<td>{{p.product_name}}</td>
 											<td>{{p.price}}</td>
 											<td>{{p.published_date}}</td>
-											<td>{{p.desc}}</td>
+											<td>{{p.desc|slice:20}}...</td>
 											<td>
-												<span class="badge badge-pill badge-soft-success font-size-12">True</span>
+												<span class="badge badge-pill badge-soft-success font-size-12">{{p.status}}</span>
 											</td>
 											<td>
 												<div class="d-flex gap-3">

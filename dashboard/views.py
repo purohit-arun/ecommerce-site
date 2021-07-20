@@ -131,7 +131,12 @@ def product_add(request):
         pcategory = Category.objects.get(category_id=cid)
         #psubcategory = requset.POST['product_subcategory']
         pdesc = request.POST.get('product_desc')
-        Product.objects.create(product_name=pname, published_date=datetime.now(),price=price, category=pcategory, desc=pdesc,imag=pimage)
+        cstatus = request.POST['chk_status']
+        if cstatus=='on':
+            status='True'
+        else:
+            status='False'
+        Product.objects.create(product_name=pname, published_date=datetime.now(),price=price, category=pcategory, desc=pdesc,imag=pimage,status=status)
         messages.success(request,'Add Product Successfully.')
         return redirect('product-details')
     else:
@@ -170,6 +175,12 @@ def product_edit(request,id):
         update_product.category = Category.objects.get(category_id=category_id)
         #psubcategory = requset.POST['product_subcategory']
         update_product.desc = request.POST.get('product_desc')
+        cstatus = request.POST.get('chk_status')
+        if cstatus=='on':
+            update_product.status='True'
+        else:
+            update_product.status='False'
+
         update_product.save()
         messages.success(request,"Update Product Successfully.")
         return redirect('product-details')

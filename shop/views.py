@@ -181,8 +181,16 @@ def user_index(request):
     return render(request, 'shop/home.html', params)
     # return render(request,'shop/home.html',{'view_slider':view_slider,'view_category':view_category})
 
-def single_product(request,id):
+def single_product(request,cid):
     if request.method == 'GET':
         view_category = Category.objects.all().filter(IsActive=True)
-        view_product = Product.objects.all().filter(category=id)
+        view_product = Product.objects.all().filter(category=cid,status=True)
     return render(request,'shop/product_single.html',{'view_category':view_category,'view_product':view_product})
+
+def single_product_details(request, pid):
+    if request.method == 'GET':
+        view_category = Category.objects.all().filter(IsActive=True)
+        view_product = Product.objects.all().filter(product_id=pid)
+        product = Product.objects.all().filter(status=True)
+        print(view_product)
+    return render(request,'shop/product_single_details.html',{'view_category':view_category,'view_product':view_product,'product':product})

@@ -1,6 +1,6 @@
 {% extends 'shop/base.html' %}
 
-{% block title %}  {% endblock title %}
+{% block title %}{{view_product.0.category}}{% endblock title %}
 
 {% block body %}
      <div class="breadbg">
@@ -81,72 +81,79 @@
                      </div>
 
                      <div class="row cpagerow rless">
-
-                        {% for product in view_product %}
-                           <div class="product-layout product-list col-xs-12 cless">
-                              <div class="product-thumb transition">
-                                 <div class="image">
-                                    <a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51"><img src="/media/{{product.imag}}" alt="Analog Digital Smart Watch" title="Analog Digital Smart Watch" class="img-responsive center-block" /></a>
-                                    {% comment %} <a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51"><img src="/static/image/cache/catalog/product/8-329x329.jpg" class="img-responsive second-img" alt="hover image"/></a> {% endcomment %}
-                                    {% comment %} <span class="sale">18%</span> {% endcomment %}
-                                    <!--  <span class="reduce-price">reduced price</span> -->
-                                 </div>
-                                 <div class="caption text-center">
-                                    
-                                    {% comment %} <div class="rating">
-                                       <span class="fa fa-stack">
-                                       <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                       </span>
-                                       <span class="fa fa-stack">
-                                       <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                       </span>
-                                       <span class="fa fa-stack">
-                                       <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                       </span>
-                                       <span class="fa fa-stack">
-                                       <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                       </span>
-                                       <span class="fa fa-stack">
-                                       <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                       </span>
-                                    </div> {% endcomment %}
-
-                                    <h4 class="protitle"><a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51">{{product.product_name}}</a></h4>
-                                    <p class="catlist-des">{{product.desc}}</p>
-                                    <div class="price">
-                                       <span class="price-new">Rs. {{product.price}}</span>
+                        {% if view_product %}
+                           {% for product in view_product %}
+                              <div class="product-layout product-list col-xs-12 cless">
+                                 <div class="product-thumb transition">
+                                    <div class="image">
+                                       <a href="/shop/single_product_details/{{product.product_id}}">
+                                          <img src="/media/{{product.imag}}" alt="{{product.product_name}}" title="{{product.product_name}}" class="img-responsive center-block" />
+                                       </a>
+                                       {% comment %} <a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51"><img src="/static/image/cache/catalog/product/8-329x329.jpg" class="img-responsive second-img" alt="hover image"/></a> {% endcomment %}
+                                       {% comment %} <span class="sale">18%</span> {% endcomment %}
+                                       <!--  <span class="reduce-price">reduced price</span> -->
                                     </div>
-                                    <div class="button-group text-center">
-                                        <span id="divpr{{ i.product_id }}" class="divpr">
-                                          <button class="cartb add-to-cart" type="button" id="pr{{i.product_id}}" data-toggle="tooltip" title="Add to cart">
+                                    <div class="caption text-center">
+                                       
+                                       {% comment %} <div class="rating">
+                                          <span class="fa fa-stack">
+                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                          </span>
+                                          <span class="fa fa-stack">
+                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                          </span>
+                                          <span class="fa fa-stack">
+                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                          </span>
+                                          <span class="fa fa-stack">
+                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                          </span>
+                                          <span class="fa fa-stack">
+                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                          </span>
+                                       </div> {% endcomment %}
+
+                                       <h4 class="protitle"><a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51">{{product.product_name}}</a></h4>
+                                       <p class="catlist-des">{{product.desc}}</p>
+                                       <div class="price">
+                                          <span class="price-new">Rs. {{product.price}}</span>
+                                       </div>
+                                       <div class="button-group text-center">
+                                          <span id="divpr{{ i.product_id }}" class="divpr">
+                                             <button class="cartb add-to-cart" type="button" id="pr{{i.product_id}}" data-toggle="tooltip" title="Add to cart">
+                                                <svg>
+                                                   <use xlink:href="#pcart"></use>
+                                                </svg>
+                                             </button>
+                                          </span>
+                                          <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
+                                          <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('51');">
                                              <svg>
-                                                <use xlink:href="#pcart"></use>
+                                                <use xlink:href="#heart" />
                                              </svg>
                                           </button>
-                                       </span>
-                                       <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                       <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('51');">
-                                          <svg>
-                                             <use xlink:href="#heart" />
-                                          </svg>
-                                       </button>
-                                       {% comment %} <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('51');">
-                                          <svg>
-                                             <use xlink:href="#compare"/>
-                                          </svg>
-                                       </button> {% endcomment %}
-                                       {% comment %} <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div> {% endcomment %}
+                                          {% comment %} <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('51');">
+                                             <svg>
+                                                <use xlink:href="#compare"/>
+                                             </svg>
+                                          </button> {% endcomment %}
+                                          {% comment %} <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div> {% endcomment %}
+                                       </div>
                                     </div>
                                  </div>
                               </div>
+                           {% endfor %}
+                        {% else %}
+                           <div class="row">
+                              <div class="col-sm-12 col-xs-12 text-center tot"> No Data Available...</div>
                            </div>
-                        {% endfor %}
-                        
+                          
+                        {% endif %}
                      </div>
-                     <div class="row pagi">
+                     {% comment %} <div class="row pagi">
                         <div class="col-sm-6 col-xs-6 text-left"></div>
                         <div class="col-sm-6 col-xs-6 text-right tot">Showing 1 to 8 of 8 (1 Pages)</div>
-                     </div>
+                     </div> {% endcomment %}
                   </div>
                </div>
             </div>

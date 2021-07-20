@@ -15,7 +15,8 @@ urlpatterns = [
      #Shubham
 
      path('home/', views.user_index, name='home'),
-     path('single_product/<int:id>', views.single_product, name='single-product'),
+     path('single_product/<int:cid>', views.single_product, name='single-product'),
+     path('single_product_details/<int:pid>', views.single_product_details, name='single-product-details'),
 
 ]
  
