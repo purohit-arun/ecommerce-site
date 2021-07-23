@@ -1041,22 +1041,35 @@
                               </li>
                               <li>
                                  <div id="cart" class="btn-group btn-block">
-                                    <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+
+                                    {% comment %} <button type="button"  data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
                                        <div class="ussvg">
                                           <svg>
                                              <use xlink:href="#hcart"></use>
                                           </svg>
                                        </div>
                                        <span id="cart-total" class="hdis text-left">
-                                          <p class="carth">0</p>
+                                          <p class="carth" id="carth"></p>
+                                          <div>My Cart</div>
+                                       </span>
+                                    </button> {% endcomment %}
+
+                                    <button type="button" id="cart-popup" class="dropdown-toggle" data-container="body"  data-toggle="popover" data-placement="bottom" data-html="true" data-content="Cart is empty!">
+                                       <div class="ussvg">
+                                          <svg>
+                                             <use xlink:href="#hcart"></use>
+                                          </svg>
+                                       </div>
+                                       <span id="cart-total" class="hdis text-left">
+                                          <p class="carth" id="carth"></p>
                                           <div>My Cart</div>
                                        </span>
                                     </button>
-                                    <ul class="dropdown-menu pull-right">
+                                    {% comment %} <ul class="dropdown-menu pull-right">
                                        <li>
-                                          <p class="text-center">Your shopping cart is empty!</p>
+                                          <p class="text-center">Cart is empty!</p>
                                        </li>
-                                    </ul>
+                                    </ul> {% endcomment %}
                                  </div>
                               </li>
                            </ul>
@@ -1429,7 +1442,7 @@
                                              </div>
                                              <div class="caption text-center">
                                                 {% comment %} <h5 class="card-title" id="namepr{{i.product_id}}">{{i.product_name}}</h5> {% endcomment %}
-                                                <h4 class="protitle"><a href="/shop/single_product_details/{{prod.product_id}}">{{i.product_name}}</a></h4>
+                                                <h4 class="protitle"><a href="/shop/single_product_details/{{i.product_id}}">{{i.product_name}}</a></h4>
                                                 <div class="price">
                                                    <span class="price-new">{{i.price}}</span>
                                                 </div>
@@ -1443,7 +1456,7 @@
                                                 </a> {% endcomment %}
 
                                                 <div class="button-group text-center">
-                                                   <button class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart" onclick="cart.add('51');">
+                                                   <button id="pr{{i.product_id}}" class="cartb add-to-cart" type="button" data-toggle="tooltip" title="Add to cart">
                                                       <svg>
                                                          <use xlink:href="#pcart"></use>
                                                       </svg>
@@ -1507,52 +1520,52 @@
                         </div>
                      </div>
 
-                     <div class="container martb">
-                        <div class="homecategory">
-                           <h1 class="heading text-left"><span>Top Categories</span></h1>
-                           <div class="row rless">
-                              <div id="cat-img" class="owl-carousel owl-theme">
-                                 {% for category in view_category%} 
-                                    <div class="block-cat-wr col-xs-12 cless">
-                                          <div class="categorybr">
-                                             <a href="/shop/single_product/{{category.category_id}}">
-                                                <div class="cateimg">
-                                                   <img src="/media/{{category.category_image}}" class="img-responsive center-block" alt="">
-                                                </div>
-                                                <div class="catcontent text-center">
-                                                   <h2><span>{{category.category_name}}</span></h2>
-                                                </div>
-                                             </a>
-                                          </div>
-                                    </div>
-                                 {% endfor %}
+                      <!--Start home-bottom Category-->
+                        <div class="container martb">
+                           <div class="homecategory">
+                              <h1 class="heading text-left"><span>Top Categories</span></h1>
+                              <div class="row rless">
+                                 <div id="cat-img" class="owl-carousel owl-theme">
+                                    {% for category in view_category%} 
+                                       <div class="block-cat-wr col-xs-12 cless">
+                                             <div class="categorybr">
+                                                <a href="/shop/single_product/{{category.category_id}}">
+                                                   <div class="cateimg">
+                                                      <img src="/media/{{category.category_image}}" class="img-responsive center-block" alt="">
+                                                   </div>
+                                                   <div class="catcontent text-center">
+                                                      <h2><span>{{category.category_name}}</span></h2>
+                                                   </div>
+                                                </a>
+                                             </div>
+                                       </div>
+                                    {% endfor %}
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <script type="text/javascript">
-                        $(document).ready(function() {
-                           $("#cat-img").owlCarousel({
-                           itemsCustom : [
-                           [0, 1],
-                           [320, 2],
-                           [400, 2],
-                           [600, 3],
-                           [768, 4],
-                           [992, 5],
-                           [1200, 6],
-                           [1410, 7]
-                           ],
-                             // autoPlay: 6000,
-                             navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-                             navigation : true,
-                             pagination:false
+                        <script type="text/javascript">
+                           $(document).ready(function() {
+                              $("#cat-img").owlCarousel({
+                              itemsCustom : [
+                              [0, 1],
+                              [320, 2],
+                              [400, 2],
+                              [600, 3],
+                              [768, 4],
+                              [992, 5],
+                              [1200, 6],
+                              [1410, 7]
+                              ],
+                              // autoPlay: 6000,
+                              navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                              navigation : true,
+                              pagination:false
+                              });
                            });
-                        });
-                     </script>
+                        </script>
+                     <!--End home-bottom Category-->
 
-                     
-                    
                      <script type="text/javascript">
                         $(document).ready(function() {
                         $('.slider-for').slick({
@@ -1615,6 +1628,7 @@
                               </div> -->
                         </div>
                      </div> {% endcomment %}
+
                   </div>
                </div>
             </div>
@@ -1623,5 +1637,12 @@
             <!--Start footer-->
             {% include 'shop/footer.html' %}            
             <!--End footer-->
+
+            <!--Start js-->
+            
+            {% include 'shop/cart_process.html' %}
+
+            <!--End js-->
+
          </body>
       </html>

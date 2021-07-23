@@ -2,10 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-     path('', views.index, name='ShopHome'),
+     path('index/', views.index, name='ShopHome'),
      path('login/', views.login, name='ShopLogin'),
      path('about/', views.about, name='about'),
-     path('contact/', views.contact, name='contact'),
+     path('shop/contact/', views.contact, name='contact'),
      path('tracker/', views.tracker, name='tracker'),
      path('search/', views.search, name='search'),
      path('products/<int:id>', views.productView, name='productView'),
@@ -14,9 +14,10 @@ urlpatterns = [
 
      #Shubham
 
-     path('home/', views.user_index, name='home'),
-     path('single_product/<int:cid>', views.single_product, name='single-product'),
-     path('single_product_details/<int:pid>', views.single_product_details, name='single-product-details'),
+     path('', views.user_index, name='home'),
+     path('shop/home/', views.user_index, name='home'),
+     path('shop/single_product/<int:cid>', views.single_product, name='single-product'),
+     path('shop/single_product_details/<int:pid>', views.single_product_details, name='single-product-details'),
 
 ]
  

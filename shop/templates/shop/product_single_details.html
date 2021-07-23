@@ -110,12 +110,13 @@
                                         </div>
                                     </div>
                                     <hr class="producthr">
-                                    <button type="button" id="button-cart" data-loading-text="Loading..." class="btn pcrt add-to-cart btn-primary">
+                                    <button type="button" id="pr{{view_product.0.product_id}}" data-loading-text="Loading..." class="btn pcrt add-to-cart btn-primary">
                                         <svg>
                                             <use xlink:href="#pcart"></use>
                                         </svg>
                                         Add to cart
                                     </button>
+
                                     <button type="button" data-toggle="tooltip" title="Add to Wish List" class="btn pcrt btn-primary" onclick="wishlist.add('47');">
                                         <svg width="18px" height="17px">
                                             <use xlink:href="#heart" />

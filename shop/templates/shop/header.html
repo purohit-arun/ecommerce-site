@@ -190,7 +190,7 @@
                   </li>
                   <li>
                      <div id="cart" class="btn-group btn-block">
-                        <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+                        {% comment %} <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
                            <div class="ussvg">
                               <svg>
                                  <use xlink:href="#hcart"></use>
@@ -198,6 +198,18 @@
                            </div>
                            <span id="cart-total" class="hdis text-left">
                               <p class="carth"> </p>
+                              <div>My Cart</div>
+                           </span>
+                        </button> {% endcomment %}
+
+                        <button type="button" id="cart-popup" class="dropdown-toggle" data-container="body"  data-toggle="popover" data-placement="bottom" data-html="true" data-content="Cart is empty!">
+                           <div class="ussvg">
+                              <svg>
+                                 <use xlink:href="#hcart"></use>
+                              </svg>
+                           </div>
+                           <span id="cart-total" class="hdis text-left">
+                              <p class="carth" id="carth"></p>
                               <div>My Cart</div>
                            </span>
                         </button>
@@ -345,3 +357,5 @@
                   </div>
                </div>
 </header>
+
+

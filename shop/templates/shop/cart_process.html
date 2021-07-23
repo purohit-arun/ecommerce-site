@@ -1,0 +1,28 @@
+{% block cart_js %}
+     <script>
+        //find out cart items from localStorage
+        if(localStorage.getItem('cart') == null){
+            var cart = {};
+        }
+        else{
+            cart = JSON.parse(localStorage.getItem('cart'));
+            document.getElementById('carth').innerHTML = Object.keys(cart).length;
+        }
+
+        // If the add to cart button is clicked, add/increment the item 
+        $('.add-to-cart').click(function(){
+            var idstr = this.id.toString();
+            if(cart[idstr] != undefined){
+            cart[idstr] = cart[idstr] + 1;
+            }
+            else{
+            cart[idstr] = 1;
+            }
+            localStorage.setItem('cart',JSON.stringify(cart));
+            document.getElementById('carth').innerHTML = Object.keys(cart).length;
+        });
+        // add popover to cart
+        $("#cart-popup").popover(); 
+        document.getElementById("cart-popup").setAttribute('data-content', '<h5>Cart</h5>');
+    </script>
+{% endblock cart_js %}
