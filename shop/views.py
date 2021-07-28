@@ -10,12 +10,6 @@ from math import ceil
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages #Alert Message
 
-# For LOGIN
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm
-
 # Create your views here.
 MERCHANT_KEY = 'Dt_Y#CKJYVa%NKUH'
 
@@ -156,7 +150,7 @@ def handlerequest(request):
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
 
-@login_required(login_url='shop/login')
+
 def user_index(request):
     view_slider = Slider.objects.all().filter(IsActive=True)
     view_category = Category.objects.all().filter(IsActive=True)
@@ -192,39 +186,3 @@ def single_product_details(request, pid):
         product = Product.objects.all().filter(status=True)
         print(view_product)
     return render(request,'shop/product_single_details.html',{'view_category':view_category,'view_product':view_product,'product':product})
-
-
-
-
-def registerPage(request):
-	if request.user.is_authenticated:
-		return redirect('home')
-	else:
-		form = CreateUserForm()
-		if request.method == 'POST':
-			form = CreateUserForm(request.POST)
-			if form.is_valid():
-				form.save()
-				user = form.cleaned_data.get('username')
-				messages.success(request, 'Account was created for ' + user)
-
-				return redirect('login')
-			
-
-		context = {'form':form}
-		return render(request, 'shop/userRegister.html', context)
-
-def loginPage(request):
-	# if request.method == "POST":
-	# 	username = request.POST.get("loginusername")
-	# 	userpassword = request.POST.get("loginpassword")
-	# 	authuser = Customer.objects.filter(name = username,user_password = userpassword)
-	# 	print(authuser)
-	# 	if(len(authuser) > 0):
-	# 		return(request, 'shop/home.html')
-	# else:
-		return(request, 'shop/userlogin.html')
-	 
-def logoutUser(request):
-	logout(request)
-	return redirect('login')
