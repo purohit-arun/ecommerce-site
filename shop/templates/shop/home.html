@@ -1441,11 +1441,20 @@
                                                 <a href="/shop/single_product_details/{{i.product_id}}"><img src="/media/{{i.imag}}" alt="{{i.product_name}}" title="{{i.product_name}}" class="img-responsive center-block" /></a>
                                              </div>
                                              <div class="caption text-center">
-                                                {% comment %} <h5 class="card-title" id="namepr{{i.product_id}}">{{i.product_name}}</h5> {% endcomment %}
-                                                <h4 class="protitle"><a href="/shop/single_product_details/{{i.product_id}}">{{i.product_name}}</a></h4>
+                                                <h4 class="protitle"><a href="/shop/single_product_details/{{i.product_id}}" >{{i.product_name}}</a></h4>
                                                 <div class="price">
                                                    <span class="price-new">{{i.price}}</span>
                                                 </div>
+                                                <!-- Pass Value In Cart -->    
+                                                   <div style="display:none;">
+                                                      <span id="imagepr{{i.product_id}}">
+                                                         <img src="/media/{{i.imag}}" alt="{{i.product_name}}" title="{{i.product_name}}" class="img-responsive center-block" class="img-fluid img-thumbnail" width="100px" height="10px"  />
+                                                      </span>
+                                                      <h4 class="protitle" id="namepr{{i.product_id}}"><a href="" >{{i.product_name}}</a></h4>
+                                                      <span class="price-new" id="pricepr{{i.product_id}}">{{i.price}}</span>
+                                                   </div>
+                                                <!-- End--> 
+
                                                 {% comment %} <p class="card-text">{{i.desc|slice:23}}...</p>
                                                 <h6 class="card-title">Price : ₹ <span id="pricepr{{i.product_id}}">{{ i.price }}</span></h6> {% endcomment %}
                                                 {% comment %} <span id="divpr{{ i.product_id }}" class="divpr">
@@ -1633,16 +1642,14 @@
                </div>
             </div>
 
-            
             <!--Start footer-->
             {% include 'shop/footer.html' %}            
             <!--End footer-->
 
             <!--Start js-->
             
-            {% include 'shop/cart_process.html' %}
+            {% include 'shop/cart_process.html' %} <!--Add Cart javascript-->
 
             <!--End js-->
-
          </body>
       </html>

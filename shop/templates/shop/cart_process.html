@@ -3,10 +3,12 @@
         //find out cart items from localStorage
         if(localStorage.getItem('cart') == null){
             var cart = {};
+            document.getElementById('carth').innerHTML = '0'
         }
         else{
             cart = JSON.parse(localStorage.getItem('cart'));
             document.getElementById('carth').innerHTML = Object.keys(cart).length;
+            updatePopoverCart(cart);
         }
 
         // If the add to cart button is clicked, add/increment the item 
@@ -21,8 +23,45 @@
             localStorage.setItem('cart',JSON.stringify(cart));
             document.getElementById('carth').innerHTML = Object.keys(cart).length;
         });
+
         // add popover to cart
         $("#cart-popup").popover(); 
-        document.getElementById("cart-popup").setAttribute('data-content', '<h5>Cart</h5>');
+        //document.getElementById("cart-popup").setAttribute('data-content', '<h5>Empty Cart</h5>');
+        
+        updatePopoverCart(cart)
+        function updatePopoverCart(cart){
+            var popStr = {};
+           
+            if(localStorage.getItem('cart') == null){
+                popStr = popStr + '<div class="border-bottom-0"><h4 class="modal-title">Cart is Empty...</h4></div>'
+            }
+            else{
+                var i = 1;
+                popStr = popStr + '<div class="modal-header border-bottom-0"><h5 class="modal-title">Your Shopping Cart</h5></div>'
+                popStr = popStr + '<h5><table class="table table-image"><thead><tr><th scope="col"></th><th scope="col">Product</th><th scope="col">Price</th></tr></thead>'
+                for(var item in cart){
+                    popStr = popStr + '<tbody><tr>'
+                    popStr = popStr + '<td class="w-25">' + document.getElementById('image' + item).innerHTML  + '</td>';
+                    popStr = popStr + '<td>' + document.getElementById('name' + item).innerHTML  + '</td>';
+                    popStr = popStr + '<td>' + document.getElementById('price' + item).innerHTML  + '</td>';
+                    popStr = popStr + '</tr><tbody>'
+                    i = i+1;
+                }
+                popStr = popStr + '</table></h5>'
+                popStr = popStr + '<div class="d-flex justify-content-end">'
+                popStr = popStr + '<h5>Total: <span class="price text-success">89$</span></h5>'
+                popStr = popStr + '</div>'
+                popStr = popStr + '<div class="modal-footer border-top-0 d-flex justify-content-between">'
+                popStr = popStr + '<button type="button" class="btn btn-danger btn-sm" onclick="clearCart()">Clear Cart</button>'
+                popStr = popStr + '</div>'
+            }
+            document.getElementById("cart-popup").setAttribute('data-content', popStr);
+            $("#cart-popup").popover().show; 
+        }
+
+        function clearCart(){
+            localStorage.clear();
+            cart={};
+        }
     </script>
 {% endblock cart_js %}

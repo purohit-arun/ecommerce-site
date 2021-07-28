@@ -19,5 +19,10 @@ urlpatterns = [
      path('shop/single_product/<int:cid>', views.single_product, name='single-product'),
      path('shop/single_product_details/<int:pid>', views.single_product_details, name='single-product-details'),
 
+
+     path('shop/register/', views.registerPage, name="register"),
+	path('shop/login/', views.loginPage, name="login"),  
+	path('shop/logout/', views.logoutUser, name="logout"),
+
 ]
  

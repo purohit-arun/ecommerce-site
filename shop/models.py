@@ -2,6 +2,15 @@ from django.db import models
 from dashboard.models import Category
 # Create your models here.
 
+
+class Customer(models.Model):
+        name = models.CharField(max_length=200, null=True, default="")
+        phone = models.CharField(max_length=200, null=True,default="")
+        email = models.CharField(max_length=200, null=True,default="")
+        user_password = models.CharField(max_length=20,default="")
+        date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=50) 
