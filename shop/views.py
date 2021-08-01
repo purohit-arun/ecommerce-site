@@ -1,6 +1,8 @@
 from typing import OrderedDict
+from django.core.checks.messages import Error
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, response
+from .paytm import checksum
 import json
 from .paytm import checksum
 from django.db import models
@@ -8,8 +10,10 @@ from .models import Orders, Product, Contact, OrdersUpdate,Customer
 from dashboard.models import Slider, Category
 from math import ceil
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages #Alert Message
-
+from django.contrib import messages #Alert Messagefrom 
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+from django.contrib.auth.hashers import check_password, make_password
 # Create your views here.
 MERCHANT_KEY = 'Dt_Y#CKJYVa%NKUH'
 
@@ -85,7 +89,14 @@ def tracker(request):
     return render(request, 'shop/tracker.html')
 
 def search(request):
-    return render(request, 'shop/search.html')
+    view_category = Category.objects.all().filter(IsActive=True)
+    search_data= request.GET['search']
+    if search_data:
+        view_product = Product.objects.all().filter(Q (product_name__icontains = search_data) | Q (desc__icontains = search_data) )
+    else:
+        view_product = Product.objects.all()
+        
+    return render(request,'shop/search.html',{'view_category':view_category,'view_product':view_product})
 
 def productView(request, id):
     # Fetch the product using the id
@@ -150,29 +161,163 @@ def handlerequest(request):
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
 
+def register(request):
+    view_category = Category.objects.all().filter(IsActive=True)
+    fname = ""
+    lname = ""
+    email = ""
+    mob_no = ""
+    pwd = ""
+    cpwd = ""
+    if request.method == "POST":
+        postData = request.POST
+        fname = postData.get('firstname')
+        lname = postData.get('lastname')
+        email = postData.get('email')
+        mob_no = postData.get('mobile_no')
+        pwd = postData.get('password')
+        cpwd = postData.get('confirmpassword')
+
+    # error = None
+    # if request.method == "POST":
+    #     if not fname:
+    #         messages.info(request,'First Name Required...!')
+    #     elif not lname:
+    #         messages.error(request,'Last Name Required...!')
+    #     elif not email:
+    #         messages.error(request,'Email Required...!')
+    #     elif not mob_no:
+    #        messages.error(request,'Mobile No. Required...!')
+    #     elif not pwd:
+    #         messages.error(request,'Password Required...!')
+    #     elif not cpwd:
+    #         messages.error(request,'Confirm Password Required...!')
+
+    if request.method == "POST":
+        if pwd == cpwd:
+            encrypte_pwd = make_password(pwd)
+            Customer.objects.create(first_name = fname ,last_name = lname ,phone = mob_no  ,email = email ,user_password = encrypte_pwd)
+           
+            messages.info(request,'You Register Successfully...')
+            return render(request,'shop/login.html')
+        else:
+            messages.error(request ,"Password not matching...")
+            return render(request,'shop/register.html')
+    else:
+        return render(request,'shop/register.html',{'view_category':view_category})
+
+def login(request):
+    view_category = Category.objects.all().filter(IsActive=True)
+    error_message = None
+    if request.method == "POST":
+        email = request.POST.get('email')
+        pwd = request.POST.get('password')
+        
+        #Check Data is Avialable or not.
+        customer = None
+
+        try:   
+            customer = Customer.objects.get(email = email)
+        except ObjectDoesNotExist:
+            error_message = 'Please Register then Login...'
+            print(error_message)
+            return render(request,'shop/login.html',{'error':error_message,'view_category':view_category}) 
+
+        if customer:
+            # if pwd != customer.user_password:
+            #     error_message = 'Invalid Password...'
+            #     return render(request,'shop/login.html',{'error':error_message})
+            Check = check_password(pwd,customer.user_password)
+            if Check:
+                # messages.info(request,'Welcome To RedayMart')
+                request.session['customer'] = customer.id
+                return redirect('home')
+            else:
+                error_message = 'Invalid Email and Password...'
+                return render(request,'shop/login.html',{'error':error_message})
+
+    else:
+         return render(request,'shop/login.html',{'view_category':view_category})
+
+def forget_password(request):
+    view_category = Category.objects.all().filter(IsActive=True)
+    error_message = None
+    if request.method=="POST":
+        email = request.POST.get('email')
+
+        try:   
+            customer = Customer.objects.get(email = email)
+        except ObjectDoesNotExist:
+            error_message = 'Please Register then Login...'
+            return render(request,'shop/forgot_password.html',{'error':error_message,'view_category':view_category})
+
+        if customer:
+            if email == customer.email:
+                request.session['customer'] = customer.id
+                return redirect('change-password')
+            else:
+                error_message = 'Email not found...!'
+                return render(request,'shop/forgot_password.html',{'error':error_message,'view_category':view_category})
+        else:
+            error_message = 'Email not found...!'
+    return render(request,'shop/forgot_password.html',{'error':error_message,'view_category':view_category}) 
+
+def change_password(request):
+    cid = request.session['customer']
+    customer = Customer.objects.get(id = cid)
+
+    if request.method == "POST":
+        pwd = request.POST.get('NewPassword')
+        cpwd = request.POST['RetypePWD']
+        error_message = None
+
+        if pwd == cpwd:
+            encrypte_pwd = make_password(pwd)
+            customer.user_password = encrypte_pwd
+            customer.save()
+            messages.info(request,'Password Changed Successfully...')
+            return redirect('user-login')
+        else:
+            messages.info(request ,"Password not matching...")
+            return redirect('change_password')
+
+    return render(request,'shop/change_password.html',{'customer':customer})    
+
+def logout(request):
+    request.session.clear()
+    return redirect('home')
 
 def user_index(request):
     view_slider = Slider.objects.all().filter(IsActive=True)
     view_category = Category.objects.all().filter(IsActive=True)
-
+    
     allProds = []
-    print('Product all prods', allProds, '\n')
     catProds = Product.objects.values('category', 'product_id')
-    print('Printing catProds', catProds, '\n')
     cats = {item['category'] for item in catProds}
-    print("Printing cats", cats)
+   
     for cat in cats:
         prod = Product.objects.filter(category=cat)
         n = len(prod)
-        print(n)
         nSlides = n//4 + ceil((n/4) - (n//4))
-        print(nSlides)
-        print(prod)
         allProds.append([prod, range(1, nSlides), nSlides])
-        params = {'allProds': allProds,'view_slider':view_slider,'view_category':view_category}
-    return render(request, 'shop/home.html', params)
-    # return render(request,'shop/home.html',{'view_slider':view_slider,'view_category':view_category})
-
+        # params = {'allProds': allProds,'view_slider':view_slider,'view_category':view_category,'Cust_Data':customer}
+    
+    if request.session.has_key('customer'):
+        cid = request.session['customer']
+        customer = Customer.objects.get(id=cid)        
+        params = {}
+        params['allProds']=allProds
+        params['view_slider']=view_slider
+        params['view_category']=view_category
+        params['Cust_Data']=customer
+        return render(request, 'shop/home.html', params)
+    else:
+        params = {}
+        params['allProds']=allProds
+        params['view_slider']=view_slider
+        params['view_category']=view_category
+        return render(request, 'shop/home.html', params)
+    
 def single_product(request,cid):
     if request.method == 'GET':
         view_category = Category.objects.all().filter(IsActive=True)
@@ -181,8 +326,10 @@ def single_product(request,cid):
 
 def single_product_details(request, pid):
     if request.method == 'GET':
-        view_category = Category.objects.all().filter(IsActive=True)
-        view_product = Product.objects.all().filter(product_id=pid)
-        product = Product.objects.all().filter(status=True)
+        view_category = Category.objects.filter(IsActive=True)
+        view_product = Product.objects.filter(product_id=pid)
+        product = Product.objects.get(product_id=pid)
+        category_id = product.category
+        product = Product.objects.filter(status=True,category=category_id)
         print(view_product)
     return render(request,'shop/product_single_details.html',{'view_category':view_category,'view_product':view_product,'product':product})

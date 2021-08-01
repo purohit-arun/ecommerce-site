@@ -4,159 +4,159 @@
 
 {% block body %}
      <div class="breadbg">
-               <div class="container">
-                  <div class="row">
-                     <ul class="breadcrumb">
-                        <li><a href="/shop/home"><i class="fa fa-home"></i></a></li>
-                        <li><a href="index70a9.html?route=product/category&amp;path=57">Tablets</a></li>
-                     </ul>
-                  </div>
-               </div>
+         <div class="container">
+            <div class="row">
+               <ul class="breadcrumb">
+                  <li><a href="/shop/home"><i class="fa fa-home"></i></a></li>
+                  <li><a href="index70a9.html?route=product/category&amp;path=57">{{view_product.0.category}}</a></li>
+               </ul>
             </div>
+         </div>
+      </div>
 
-            <div id="product-category" class="container cleft">
-               <div class="row">
-                  <aside id="column-left" class="col-sm-4 col-md-3 col-xs-12 hidden-sm hidden-xs">
-                     <div class="list-group catlistpage hidden-xs">
-                        <div class="panel-heading cathed">category</div>
-                        {% for c in view_category %}
-                            <a href="/shop/single_product?category={{c.category_id}}" class="list-group-item">{{c.category_name}} (11)</a>
-                        {% endfor %}
+      <div id="product-category" class="container cleft">
+         <div class="row">
+            <aside id="column-left" class="col-sm-4 col-md-3 col-xs-12 hidden-sm hidden-xs">
+               <div class="list-group catlistpage hidden-xs">
+                  <div class="panel-heading cathed">category</div>
+                  {% for c in view_category %}
+                        <a href="/shop/single_product?category={{c.category_id}}" class="list-group-item">{{c.category_name}} (11)</a>
+                  {% endfor %}
+               </div>
+            </aside>
+
+            <div id="content" class="col-sm-12 col-md-9  col-xs-12 colright">
+               <div class="appres"></div>
+
+               <div class="row cate-border">
+                  <div class="col-md-2 col-sm-3 col-xs-4 lgrid">
+                     <div class="btn-group-sm">
+                        <button type="button" id="list-view" class="btn listgridbtn" data-toggle="tooltip" title="List">
+                           <svg width="20px" height="20px">
+                              <use xlink:href="#clist"></use>
+                           </svg>
+                        </button>
+                        <button type="button" id="grid-view" class="btn listgridbtn" data-toggle="tooltip" title="Grid">
+                           <svg width="18px" height="18px">
+                              <use xlink:href="#cgrid"></use>
+                           </svg>
+                        </button>
                      </div>
-                  </aside>
+                  </div>
+                  
+                  <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 hidden-md hidden-sm ct">
+                     <a href="index6431.html?route=product/compare" id="compare-total" class="btn btn-link">Product Compare (0)</a>
+                  </div>
 
-                  <div id="content" class="col-sm-12 col-md-9  col-xs-12 colright">
-                     <div class="appres"></div>
-
-                     <div class="row cate-border">
-                        <div class="col-md-2 col-sm-3 col-xs-4 lgrid">
-                           <div class="btn-group-sm">
-                              <button type="button" id="list-view" class="btn listgridbtn" data-toggle="tooltip" title="List">
-                                 <svg width="20px" height="20px">
-                                    <use xlink:href="#clist"></use>
-                                 </svg>
-                              </button>
-                              <button type="button" id="grid-view" class="btn listgridbtn" data-toggle="tooltip" title="Grid">
-                                 <svg width="18px" height="18px">
-                                    <use xlink:href="#cgrid"></use>
-                                 </svg>
-                              </button>
-                           </div>
-                        </div>
-                        
-                        <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 hidden-md hidden-sm ct">
-                           <a href="index6431.html?route=product/compare" id="compare-total" class="btn btn-link">Product Compare (0)</a>
-                        </div>
-
-                        <div class="col-lg-3 col-md-5 col-xs-4 col-sm-5 catesort">
-                           <div class="input-group input-group-sm select-input">
-                              <label class="input-group-addon" for="input-sort">Sort By:</label>
-                              <select id="input-sort" class="form-control" onchange="location = this.value;">
-                                 <option value="https://opencart.dostguru.com/MS13/readymart_03/index.php?route=product/category&amp;path=57&amp;sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
-                                 <option value="index02c4.html?route=product/category&amp;path=57&amp;sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-                                 <option value="indexc9f9.html?route=product/category&amp;path=57&amp;sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-                                 <option value="index78cd.html?route=product/category&amp;path=57&amp;sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
-                                 <option value="indexcd20.html?route=product/category&amp;path=57&amp;sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
-                                 <option value="indexb6c0.html?route=product/category&amp;path=57&amp;sort=rating&amp;order=DESC">Rating (Highest)</option>
-                                 <option value="index840b.html?route=product/category&amp;path=57&amp;sort=rating&amp;order=ASC">Rating (Lowest)</option>
-                                 <option value="index8743.html?route=product/category&amp;path=57&amp;sort=p.model&amp;order=ASC">Model (A - Z)</option>
-                                 <option value="index84c9.html?route=product/category&amp;path=57&amp;sort=p.model&amp;order=DESC">Model (Z - A)</option>
-                              </select>
-                           </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-5 col-xs-4 col-sm-4 catesort">
-                           <div class="input-group input-group-sm select-input">
-                              <label class="input-group-addon" for="input-limit">Show:</label>
-                              <select id="input-limit" class="form-control" onchange="location = this.value;">
-                                 <option value="https://opencart.dostguru.com/MS13/readymart_03/index.php?route=product/category&amp;path=57&amp;limit=15" selected="selected">15</option>
-                                 <option value="index740e.html?route=product/category&amp;path=57&amp;limit=25">25</option>
-                                 <option value="index4088.html?route=product/category&amp;path=57&amp;limit=50">50</option>
-                                 <option value="index32a5.html?route=product/category&amp;path=57&amp;limit=75">75</option>
-                                 <option value="index0313.html?route=product/category&amp;path=57&amp;limit=100">100</option>
-                              </select>
-                           </div>
-                        </div>
-
+                  <div class="col-lg-3 col-md-5 col-xs-4 col-sm-5 catesort">
+                     <div class="input-group input-group-sm select-input">
+                        <label class="input-group-addon" for="input-sort">Sort By:</label>
+                        <select id="input-sort" class="form-control" onchange="location = this.value;">
+                           <option value="https://opencart.dostguru.com/MS13/readymart_03/index.php?route=product/category&amp;path=57&amp;sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
+                           <option value="index02c4.html?route=product/category&amp;path=57&amp;sort=pd.name&amp;order=ASC">Name (A - Z)</option>
+                           <option value="indexc9f9.html?route=product/category&amp;path=57&amp;sort=pd.name&amp;order=DESC">Name (Z - A)</option>
+                           <option value="index78cd.html?route=product/category&amp;path=57&amp;sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
+                           <option value="indexcd20.html?route=product/category&amp;path=57&amp;sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
+                           <option value="indexb6c0.html?route=product/category&amp;path=57&amp;sort=rating&amp;order=DESC">Rating (Highest)</option>
+                           <option value="index840b.html?route=product/category&amp;path=57&amp;sort=rating&amp;order=ASC">Rating (Lowest)</option>
+                           <option value="index8743.html?route=product/category&amp;path=57&amp;sort=p.model&amp;order=ASC">Model (A - Z)</option>
+                           <option value="index84c9.html?route=product/category&amp;path=57&amp;sort=p.model&amp;order=DESC">Model (Z - A)</option>
+                        </select>
                      </div>
+                  </div>
 
-                     <div class="row cpagerow rless">
-                        {% if view_product %}
-                           {% for product in view_product %}
-                              <div class="product-layout product-list col-xs-12 cless">
-                                 <div class="product-thumb transition">
-                                    <div class="image">
-                                       <a href="/shop/single_product_details/{{product.product_id}}">
-                                          <img src="/media/{{product.imag}}" alt="{{product.product_name}}" title="{{product.product_name}}" class="img-responsive center-block" />
-                                       </a>
-                                       {% comment %} <a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51"><img src="/static/image/cache/catalog/product/8-329x329.jpg" class="img-responsive second-img" alt="hover image"/></a> {% endcomment %}
-                                       {% comment %} <span class="sale">18%</span> {% endcomment %}
-                                       <!--  <span class="reduce-price">reduced price</span> -->
-                                    </div>
-                                    <div class="caption text-center">
-                                       
-                                       {% comment %} <div class="rating">
-                                          <span class="fa fa-stack">
-                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                          </span>
-                                          <span class="fa fa-stack">
-                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                          </span>
-                                          <span class="fa fa-stack">
-                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                          </span>
-                                          <span class="fa fa-stack">
-                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                          </span>
-                                          <span class="fa fa-stack">
-                                          <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-                                          </span>
-                                       </div> {% endcomment %}
+                  <div class="col-lg-3 col-md-5 col-xs-4 col-sm-4 catesort">
+                     <div class="input-group input-group-sm select-input">
+                        <label class="input-group-addon" for="input-limit">Show:</label>
+                        <select id="input-limit" class="form-control" onchange="location = this.value;">
+                           <option value="https://opencart.dostguru.com/MS13/readymart_03/index.php?route=product/category&amp;path=57&amp;limit=15" selected="selected">15</option>
+                           <option value="index740e.html?route=product/category&amp;path=57&amp;limit=25">25</option>
+                           <option value="index4088.html?route=product/category&amp;path=57&amp;limit=50">50</option>
+                           <option value="index32a5.html?route=product/category&amp;path=57&amp;limit=75">75</option>
+                           <option value="index0313.html?route=product/category&amp;path=57&amp;limit=100">100</option>
+                        </select>
+                     </div>
+                  </div>
 
-                                       <h4 class="protitle"><a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51">{{product.product_name}}</a></h4>
-                                       <p class="catlist-des">{{product.desc}}</p>
-                                       <div class="price">
-                                          <span class="price-new">Rs. {{product.price}}</span>
-                                       </div>
-                                       <div class="button-group text-center">
-                                          <span id="divpr{{ i.product_id }}" class="divpr">
-                                             <button class="cartb add-to-cart" type="button" id="pr{{i.product_id}}" data-toggle="tooltip" title="Add to cart">
-                                                <svg>
-                                                   <use xlink:href="#pcart"></use>
-                                                </svg>
-                                             </button>
-                                          </span>
-                                          <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
-                                          <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('51');">
-                                             <svg>
-                                                <use xlink:href="#heart" />
-                                             </svg>
-                                          </button>
-                                          {% comment %} <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('51');">
-                                             <svg>
-                                                <use xlink:href="#compare"/>
-                                             </svg>
-                                          </button> {% endcomment %}
-                                          {% comment %} <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div> {% endcomment %}
-                                       </div>
-                                    </div>
+               </div>
+
+               <div class="row cpagerow rless">
+                  {% if view_product %}
+                     {% for product in view_product %}
+                        <div class="product-layout product-list col-xs-12 cless">
+                           <div class="product-thumb transition">
+                              <div class="image">
+                                 <a href="/single_product_details/{{product.product_id}}">
+                                    <img src="/media/{{product.imag}}" alt="{{product.product_name}}" title="{{product.product_name}}" class="img-responsive center-block" />
+                                 </a>
+                                 {% comment %} <a href="index16b8.html?route=product/product&amp;path=57&amp;product_id=51"><img src="/static/image/cache/catalog/product/8-329x329.jpg" class="img-responsive second-img" alt="hover image"/></a> {% endcomment %}
+                                 {% comment %} <span class="sale">18%</span> {% endcomment %}
+                                 <!--  <span class="reduce-price">reduced price</span> -->
+                              </div>
+                              <div class="caption text-center">
+                                 
+                                 {% comment %} <div class="rating">
+                                    <span class="fa fa-stack">
+                                    <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                    <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                    <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                    <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                    <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                 </div> {% endcomment %}
+
+                                 <h4 class="protitle"><a href="/single_product_details/{{product.product_id}}">{{product.product_name}}</a></h4>
+                                 <p class="catlist-des">{{product.desc}}</p>
+                                 <div class="price">
+                                    <span class="price-new">Rs. {{product.price}}</span>
+                                 </div>
+                                 <div class="button-group text-center">
+                                    <span id="divpr{{ i.product_id }}" class="divpr">
+                                       <button class="cartb add-to-cart" type="button" id="pr{{i.product_id}}" data-toggle="tooltip" title="Add to cart">
+                                          <svg>
+                                             <use xlink:href="#pcart"></use>
+                                          </svg>
+                                       </button>
+                                    </span>
+                                    <input type="hidden" name="hid-qty-msg" value="Quantity At Least One or More">
+                                    <button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('51');">
+                                       <svg>
+                                          <use xlink:href="#heart" />
+                                       </svg>
+                                    </button>
+                                    {% comment %} <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('51');">
+                                       <svg>
+                                          <use xlink:href="#compare"/>
+                                       </svg>
+                                    </button> {% endcomment %}
+                                    {% comment %} <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div> {% endcomment %}
                                  </div>
                               </div>
-                           {% endfor %}
-                        {% else %}
-                           <div class="row">
-                              <div class="col-sm-12 col-xs-12 text-center tot"> No Data Available...</div>
                            </div>
-                          
-                        {% endif %}
+                        </div>
+                     {% endfor %}
+                  {% else %}
+                     <div class="row">
+                        <div class="col-sm-12 col-xs-12 text-center tot"> No Data Available...</div>
                      </div>
-                     {% comment %} <div class="row pagi">
-                        <div class="col-sm-6 col-xs-6 text-left"></div>
-                        <div class="col-sm-6 col-xs-6 text-right tot">Showing 1 to 8 of 8 (1 Pages)</div>
-                     </div> {% endcomment %}
-                  </div>
+                     
+                  {% endif %}
                </div>
+               {% comment %} <div class="row pagi">
+                  <div class="col-sm-6 col-xs-6 text-left"></div>
+                  <div class="col-sm-6 col-xs-6 text-right tot">Showing 1 to 8 of 8 (1 Pages)</div>
+               </div> {% endcomment %}
             </div>
+         </div>
+      </div>
 
 {% endblock body %}
 {% block js %}
