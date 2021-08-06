@@ -9,7 +9,7 @@ class Customer(models.Model):
         phone = models.CharField(max_length=200, null=True,default="")
         email = models.CharField(max_length=200, null=True,default="")
         user_password = models.CharField(max_length=20,default="")
-        date_created = models.DateTimeField(auto_now_add=True, null=True)
+        Register_Date = models.DateTimeField(null=True)
 
         def __str__(self):
             return self.email

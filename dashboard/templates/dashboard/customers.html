@@ -1,0 +1,83 @@
+{% extends 'dashboard/dashboard.html' %}
+{% block body %}
+    <!-- start page title -->
+		<div class="row">
+			<div class="col-12">
+				<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+					<h4 class="mb-sm-0 font-size-18">Customers</h4>
+				</div>
+			</div>
+		</div>
+		<!-- end page title -->
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row mb-2">
+							<div class="col-sm-4">
+								<div class="search-box me-2 mb-2 d-inline-block">
+									<div class="position-relative">
+										<input type="text" class="form-control" placeholder="Search...">
+										<i class="bx bx-search-alt search-icon"></i>
+									</div>
+								</div>
+							</div>
+							<!-- end col-->
+						</div>
+
+						<div class="table-responsive">
+							<table class="table align-middle table-nowrap table-check table-striped">
+								<thead class="table-primary">
+									<tr>
+										<th class="align-middle">Sr. No.</th>
+										<th class="align-middle">First Name</th>
+										<th class="align-middle">Last Name</th>
+										<th class="align-middle">Email</th>
+										<th class="align-middle">Register Date</th>
+										<th class="align-middle">Password (Encrypt)</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% if page_obj %}
+									{% for c in page_obj.object_list %}
+										<tr>
+											<td>{{forloop.counter}}</td>
+											<td>{{c.first_name}}</td>
+											<td>{{c.last_name}}</td>
+											<td>{{c.email}}</td>
+											<td>{{c.Register_Date}}</td>
+											<td>{{c.user_password | slice:30}}...</td>
+										</tr>		
+									{% endfor %}	
+									{% else %}
+										<tr>
+                                            <td colspan="7" style="text-align:center;">No Data Available...</td>
+										</tr>
+									{% endif %}						
+								</tbody>
+							</table>
+						</div>
+						<!-- start Pagination-->
+							<ul class="pagination justify-content-end pagination-sm">
+								{% if page_obj.has_previous %}
+									<li class="page-item"><a href="?page=1"  class="page-link">First</a></li>
+									<li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a></li>
+								{% endif %}
+
+								<li class="page-item"><span class="page-link current">
+									Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+								</span></li>
+
+								{% if page_obj.has_next %}
+									<li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a></li>
+									<li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a></li>
+								{% endif %}
+							</ul>
+						<!-- end Pagination-->
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- end row -->
+{% endblock body %}

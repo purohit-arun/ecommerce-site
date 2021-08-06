@@ -41,7 +41,7 @@
 										{% if page_obj%}
 										{% for c in page_obj.object_list %}
 											<tr>
-												<td>{{c.contact_msg_id}}</td>
+												<td>{{forloop.counter}}</td>
 												<td>{{c.contact_name}}</td>
 												<td><a href="mailto:{{c.email}}">{{c.email}}</a></td>
 												<td>{{c.subject}}</td>

@@ -84,7 +84,7 @@
 										{% if page_obj %}
 										{% for c in page_obj.object_list %}
 											<tr>
-												<td>{{c.category_id}}</td>
+												<td>{{forloop.counter}}</td>
 												<td>{{c.category_name}}</td>
 												<td><img src="/media/{{c.category_image|default_if_none:'#'}}" alt="{{c.category_name}}" style="height:50px" ></td>
 												<td>	

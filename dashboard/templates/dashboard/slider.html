@@ -73,7 +73,7 @@
 								<table class="table align-middle table-nowrap table-check table-striped ">
 									<thead class="table-primary">
 										<tr>
-											<th class="align-middle">ID</th>
+											<th class="align-middle">Sr. No.</th>
 											<th class="align-middle">Name</th>
                                             <th class="align-middle">Image</th>
 											<th class="align-middle">Title</th>
@@ -86,7 +86,7 @@
 										{% if page_obj %}
 										{% for s in page_obj.object_list %}
 											<tr>
-												<td>{{s.slider_id}}</td>
+												<td>{{forloop.counter}}</td>
 												<td>{{s.slider_name}}</td>
                                                 <td><picture>
                                                         <source srcset="/media/{{s.slider_image}}" media="(max-width: 100px, max-height: 50px)">

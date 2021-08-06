@@ -30,5 +30,7 @@ urlpatterns = [
     path('sub_category_edit/<int:id>',views.sub_category_edit,name='sub-category-edit'),
     path('sub_category_delete/<int:id>',views.sub_category_delete, name='sub-category-delete'),
 
+    path('customers/', views.customers, name='customers'),
+
     path('comingsoon/',views.comingsoon,name='comingsoon'),
 ]

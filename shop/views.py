@@ -6,6 +6,7 @@ from .paytm import checksum
 import json
 from .paytm import checksum
 from django.db import models
+from datetime import datetime
 from .models import Orders, Product, Contact, OrdersUpdate,Customer
 from dashboard.models import Slider, Category
 from math import ceil
@@ -142,7 +143,6 @@ def checkOut(request):
     return render(request, 'shop/checkout.html')
 
 # for handling the paytm payment request
-
 @csrf_exempt
 def handlerequest(request):
     # paytm will send you post request here
@@ -161,6 +161,7 @@ def handlerequest(request):
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
 
+# User-Side -> Shubham
 def register(request):
     view_category = Category.objects.all().filter(IsActive=True)
     fname = ""
@@ -196,7 +197,7 @@ def register(request):
     if request.method == "POST":
         if pwd == cpwd:
             encrypte_pwd = make_password(pwd)
-            Customer.objects.create(first_name = fname ,last_name = lname ,phone = mob_no  ,email = email ,user_password = encrypte_pwd)
+            Customer.objects.create(first_name = fname ,last_name = lname ,phone = mob_no  ,email = email ,user_password = encrypte_pwd, Register_Date = datetime.now())
            
             messages.info(request,'You Register Successfully...')
             return render(request,'shop/login.html')

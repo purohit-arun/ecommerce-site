@@ -2,7 +2,7 @@ import os
 from django.http import request
 from django.shortcuts import redirect, render
 from datetime import datetime
-from shop.models import Product, Orders, Contact
+from shop.models import Product, Orders, Contact, Customer
 from .models import Category,Sub_Category,Slider
 from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required #Login Required for going any page
@@ -243,10 +243,11 @@ def category_edit(request,id):
 
 def category_delete(request,id):
     delete_category = Category.objects.get(category_id=id)
-    messages.success(request,"Deleted Successfully.")
-    delete_category.delete()
-    return redirect('category')
-
+    if request.method=="POST":
+        delete_category.delete()
+        messages.success(request,"Deleted Successfully.")
+        return redirect('category')
+    return render(request,'dashboard/delete.html')
 #----------sub_category-------------
 
 @login_required(login_url="/ap/")
@@ -309,6 +310,21 @@ def sub_category_delete(request,id):
     delete_sub_category.delete()
     return redirect('sub-category')
 
+#-------------customers-------------
+
+@login_required(login_url="/ap/")
+def customers(request):
+    customer = Customer.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(customer, 5)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+    return render(request,'dashboard/customers.html',{'page_obj':page_obj})
+
 #-------------orders-------------
 
 @login_required(login_url="/ap/")
@@ -323,6 +339,7 @@ def orders(request):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
     return render(request,'dashboard/orders.html',{'page_obj':page_obj})
+
 
 def comingsoon(requset):
     return render(requset, 'dashboard/comingsoon.html')
